@@ -1,0 +1,54 @@
+
+ako iskame metodi kato .map() ili .filter() da rabotat vurhu charove, stringove 
+ili dr primerno, trqbva da gi slojim purvo v masiv inache nqma da raboti.
+mojem da joinem edin masiv s prazen string i shte poluchim string.
+
+metoda slice():
+arr.slice(-1) ni dava poslednata stoinost KATO MASIV !
+arr.slice(-1)[0] VZIMA POSLEDNIQ ELEMENT NO NE KATO MASIV 
+arr.slice(-3) NI DAVA POSLEDNITE 3 ELEMENTA
+
+
+metoda splice() pak priema dva no purviq e index ot koito zapochva da reje a vtoriq e kolko elementa iskame da otreje kato broika 
+
+polzvame splice() vmesto delete za triene na elementi ot masiv zashtoto mesti ostanalite elementi v dqsno sled itrivaneto dokato delete ne go pravi.
+
+Ime 3 nachina za opisvane na jsoni : 
+1. '{"name":"Gosho","age":10,"date":"19/06/2005"}'
+2. "{'name':'Gosho','age:10','date':'19/06/2005'}"
+3. "{\"name\":\"Gosho\",\"age\":10,\"date\":\"19/06/2005\"}"
+
+Regexi v JS se  pravat sus /regexPattern/  
+
+NO AKO ISKAME DA MACHVA POVECHE NESHTA PUSKAME global modifier KOITO SE PUSKA TAKA:
+/regexPattern/g 
+
+
+CTRL + w KATO S MISHKATA SME VURHU NESHTO markira cqlata duma ako produljavame da natiskme w SHTE PRODULJAVA DA SELEKTIRA POVECHE I POVECHE !!!!!!! POLZVAI GO !!!!
+
+
+
+AKO ISKAM DA PRINTIRAM PROMENLIVA PISHA :   ImeNaPromenliva.log + TAB + TAB
+VAJNO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+MOJEM DA NAPRAVIM I FOREACH METOD SUS LAMBDA:
+arr.forEach(element => {
+
+// pishem si logikata tuk :)
+
+});
+
+
+
+Number.toFixed(2) // E METOD KATO f:2 VUV C#, POLZVA SE ZA CHISLA I NI GI POKAZVA V SLUCHAQ S 2 ZNAKA SLED DEETICHNATA ZAPETAQ.	
+
+
+Number.toPrecision(2) E SUSHTOTO SAMOCHE ZAPOCHVA OT NACHALOTO NA CHISLOTO A NE SLED DESETICHNATA ZAPETAQ
+
+Ime to Exponential i drugi.
+
+
+
