@@ -1,0 +1,432 @@
+
+PISHE SE V WEBSTORM ILI INTELLIJ S PLIGIN NODE.JS!
+Za nov JS proekt v webstorm e blanc Project  
+V IntelliJ e Static Web i posle kato zaredi klikvame new JavaScript File i gotovo
+Tuk mojem da pishem na JavaScript bez da sa ni nujni nikakvi tagove
+
+
+Blgodarenie na Node.js javascript veche e i serveren ezik kato php.
+shte gledame klientskata chast i sintaksis
+
+Javascript e netipiziran ezik. Toest tam nqma intove stringove i dr.
+*
+* T.E. Imame gi no sa kriti. NQMAME RESTRIKCII .   Edim masiv moje da sdurja mnogo tipove.
+*  vsichko e dinamichno toest nqma da ni kazva kade imame tupi greshki.
+
+tuk ne polzvame -> ili => kato v php a si polzvame . kato v C# I POLUCHAVAME NUJNITE PODSKAZKI
+Imame mnogo split, join, substring, slice, endswith, length i mnogo drugi
+
+
+TUK NE NI KAZVA TOCHNO KUDE SE NAMIRAT NQKOI GRESHKI
+Ako izpishe undefined znachi ne e dobre zashtoto poluchavash greshkite kusno
+
+Imame Svoboda tuk.
+
+
+No po dobre s let zashtoto suzdava skoup na promenlivata dokato var e malko kato hack
+
+
+ZA STRINGOVETE MOJEM DA GI PISHEM S EDINICHNI I S DVOINI KAVICHKI
+*  I AKO SE KOMBINIRAT NQMA NUJDA DA ESKEIPVANE SIVOLI
+*
+*  ako napishem v konzolata "test" + 1 shte ni vurna "test 1" inta shte go napravi na sring i shte gi konkatenira.
+*
+
+AKO let ni e podchertano v nachaloto na proekta znachi sus ALT + ENTER trqbva da
+smenim versiqta
+
+// printirame edna promenliva 10 puti 
+for(let i = 1; i<= 10; i++)
+{
+    console.log(i);
+}
+
+
+
+* Imame for of   i   for in
+*
+*for(let i in arr)   // ako primerno obhojdame nqkoi masiv
+*{
+*   console.log(i)       //for in she ni izvede samo INDEXITE A NE STOINOSTITE
+* }
+*
+* for of E SUSHTOTO NO VRUSHTA STOINOSTITE A NE INDECITE KATO FOREACH V C#
+*
+Switch case , for, while, do while,
+    e edin i susht kato v c#
+
+
+
+// AKO BECHE SUZDADENA S var SHTQHME I OT VUN DA Q POLZVAME
+
+Globalniq skoup se nasledqva ot funkcii, ifove i dr bez da e nujno da podavame parametri !
+
+DOBRA PRAKTIKA E DA NE SE PISHE NA GLOBALNIQ SKOUP, VINAGI DA SE POLZVAT KLASOVE FUNKCII, ANONIMNI FUNKCII, IFIETA I T.N.
+
+pochti nikoga ne se chett chisla ot konzolata tuk i nqma da ni trqbva !
+
+
+INSTALIRAME SI Node.js OT INTERNET I OTVARQME CMD KONZOLA, PISHEM node I AKO NI DADE DA PISHEM NA JS ZNACHI VSICHKO E OK, IZLIZA SE SUS .exit  !!!!!!!!!!!!!!!!
+AKO NE STANE VZIMAME PUTQT KUDETO E INSTALIRANO I GO SLAGAME V Environment variables , path, edit i go slagame.
+
+
+v javascript po dobre da polzvame ===
+
+
+DEBUGVA SE MNOGO LESNO; SLAGAME BREKPOINT I PROSTO PUSKAME BUBOLECHKATA
+S F8 hodi na dolo
+DEBUGERA SI VURVI S NODE.JS NE E NUJNO DA SVALQME DOPULNITELEN KATO V PHP
+
+
+
+
+
+
+CLIENTSKA CHAST:
+Formi i dr.
+
+OSNOVNO PRAVILO: ZA DA IMAME JS FAIL TRQBVA PURVO DA IMAME HTML FAIL KOITO DA GO INCLUDNE,
+TOVA E QSNO.
+
+JSa se slaga v HTMLa
+ZA DA GO INCLUDNEM PROSTO MOJE S DRAG AND DROP ili sus 
+SAMOCHE TRQBVA DA E NAKRAQ NA FAILA SLED ZATVARQNETO NA TAGA HTML !!! VAJNO !!!
+<script src="PutDoFaila"></script>
+   
+
+  	let res = "";
+        for(let i = 1; i <= 10; i++)
+        {
+            res += i + " ";
+        }
+
+        document.write(res);
+        // S document.write(i); pishem na ekana
+
+        console.log(res);
+        // CHISLATA OT 1 DO 10 SHTE BUDAT IZPISANI NA KONZOLATA KATO RUNNEM HTML FAILA
+
+
+JS raboti s html no ne direktno a izpolzvaiki edno API koeto e seriq ot funkcii koeto se kazva DOM durvo DOCUMENt OBJECT MODEL koeto prevrushta HTMLa v edna durvovidna struktura ot obekti i taka nie mojem chrez JS da dostupvame i manipulirame vsichko v nego.
+
+
+SHTE NAPRAVIM KALKULATOR:
+
+V JS NE NI E NUJEN FORMULQR ZASHTOTO FORMULQRUT E NARAVEN S CEL DA SE IZPRATI I DA SE PREZAREDI DA DENA STRANICA
+No shte slagame form tagove zashtoto e dobra praktika.
+
+<form>
+    <!--V JS NE NI TRQBVA NAME A id ILI class-->
+    Num1:   <input type="number" value="0" id="firstNum"><br>
+    Num2:   <input type="number" value="0" id="secondNum"><br>
+    Result: <input type="number" value="0" id="result"><br>
+    <input type="submit" name="btn" value="Submit!"><br>
+</form>
+
+SEGA NI TRQBVA LOGIKA KOQTO DA KALKULIRA!	 
+
+HTML dokumenta se dostupva sus document.  I POSLE MOJEM DA DOSTUPIM VSICHKO V TOZI DOKUMENT.
+
+
+Mojem da zakachame eventi na vzetite elementi ot HTML dokumenta
+
+
+//VZIMAME SI BUtoNA Ot HTML DOUMENTA
+let sumBtn = document.getElementById('sum');
+
+// drugiqt nachin za zakachim event na buton e v samiq html 
+<input onclick="ImeNaFunkciqVJSFaila" type="submit" name="btn" value="Submit!">
+OBCHE V TOZI SLUCHAI JS FAILA TRQBVA DA BUDE DEKLARIRAN V HEAD TAGA NA HTML
+
+
+// MOJEM DA ZAKACHME EVENTI NA TEZI VZETi DOKUMENTI, V SLUCHAQ ZAKACHAME .onclick
+// I KUM NEGO SLAGAME FUNKCIQ KOQTO DA SE IZPULNI PRI KLIKVANE NA BUTONA.
+
+sumBtn.onclick = function(e){
+
+    e.preventDefault();
+
+    //vzimame si nomerata t.e. stoinostita zatova pishem .value
+    let num1 = document.getElementById('firstNum').value;
+    let num2 = document.getElementById('secondNum').value;
+
+    // OBACHE POLUCHAVAME CHISATA KATO STRINGOVE !
+    //PARSVAME SUS FUNKCIQTA  Number(); ILI S ParseInt();
+    let parsedNum1 = Number(num1);
+    let parsedNum2 = Number(num2);
+
+    // SMQTAME SI REZULtata
+    let result = parsedNum1 + parsedNum2;
+
+    //ZA DA GO PRINTIRAME V POLETO TRQBVA PURVO DA GO VZEMEM
+    // NE E NUJNO DA PARSVAME NISHTO
+    let resultField = document
+        .getElementById('resultField');
+
+
+    // I NARAQ SETVAME STOINOSTTA DA E RAVNA NA REZULTATA !
+    resultField.value = result;
+
+    // OBACHE STRANICATA SE PREZAREJDA SLED KATO NATISNEM BUTONA
+    //BUTONITE AKO SA VUV FORM TAG SLED NATISKANETO IZPRASHTAT TOZI
+    //FORMULQT I PREZAREJDAT STRANICATA TOVA E POVEDENIE PO DEFAULT
+
+    //RESHENIE : ILI MAHAME FORM TAGA ILI SLAGAME EVENT PARAMETUR VUV
+    //FUNKCIQTA I I MAHAME DEFAULT POVEDENIETO SUS e.preventDefault();
+};
+
+
+// DOKATO PRAVIM KAKVOTO I DA BILO VINAGI MOJEM DA TESTVAME V KONZOLATA
+
+ 
+
+//MNOGO VAJNO E KAK DA DEBUGVAME OT BRAWZERA:
+OTVARQME SI STRANICATA, DAVAME F12, SOURCE, OTVARQME SI FAILA KOITO ISKAME DA DEBUGVAME, SLAGAME BREAKPOINT, RERUNVAME, PISHEM STOINOSTITE I KLIKAME BUTONA SUBMIT!
+AKO DEBUGVAME OT BRAWSERA S F10 SE DVIJIM NAPRED VAJNO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+VAJNO !!!
+    v JS mojem da pishem:
+    a = a || 1;  // tova e: a e ravno na a ili e ravno na 1
+    Ako a e undefined go vzima za edinica !!!!!!
+    NO MOJE I DA NE VURNEM STOINOST PAK SHTE RABOTI !!!
+
+    MOJEM DA ZAPAZVAME CELI FUNKCII V PROMENLIVI !
+
+    SLED KATO E PODADENA V PROMENLIVA MOJEM DA Q IZPRATIM KATO
+    PARAMETUR NA DRUGA FUNKCIQ. TOVA SE NARICHA CALLBACK FUNKCIQ !!!!
+
+
+
+    //SHtE NAPRAVIM LABEL NA Result: V HTMLa I OT TUK SHTE GO VZEMEM; SHte gO NAPRAVIM CHERVEN:
+
+    let label = document.getElementById('result_lbl');
+
+    // IZPOLZVAME setAttribute za da rabotim sus CSS vurhu HTMLa
+    label.setAttribute('style', 'color:red');
+
+    //SHTE NAPRAVIM I FIELDA DA E DESABLED SLED NATISKANETO NA BUTONA:
+    resultField.setAttribute("disabled", "disabled")
+
+
+EDIN LABEL NE ZNAE ZA KOI INPUT E I ZA TOVA SE SLGA for="IdNaInput"    VAJNOOOOO!!!!!!
+
+    <label id="result_lbl" for="resultField">
+        Result:
+    </label>
+    <input type="number" value="0" id="resultField">
+
+
+KAKTO POLZVAME setAttribute() mojem da polzvame i getAttripute();
+PRIMERNO ZA DA VZEMEM STARITE stoinosti na urviqt nomer primerno.
+
+let oltValueOfNumOne = document.getElementById('firstNum').getAttribute("value");
+
+Imame new Date() ot koeto mojem da vzemem den, chas, minuta, sekunda i dr !!!
+
+
+
+RABOTA S MASIVI:
+
+Mojem da imame mnogo tipove danni v edin masiv NO E LOSHA PRAKTIKA.
+DOBRATA PRAKTIKA E DA SI PRAVITE KAKTO V TIPIZIRANITE EZICI: Masivi samo s edin tip danni.
+
+
+* imame arr.push() koeto dabavq elementi na edin masiv kato vus spisuk
+*
+* arr.pop() vadi ot zad t.e. pravi obratnoto na push !!!
+*
+* V JS MASIVUT E KOMBINACIQ OT RECHNIK, SPISUK I MASIV
+*
+* IMAME arr.unshift()    i     arr.shift()  koito vadat nai otpred i slagat nai otpred
+*
+* IMAME arr.filter() koeto filtrita edin masiv
+*
+* imame oshte mnogo opreacii kato join, split splice i dr.
+* Join go znaem i split go znaem
+*
+* Splice() ni pozvolqva da iztriem element i da dobavim drug ednovremeno v dadena poziciq
+*
+V JS imame rechnici new Map(), imame hashset new Set() NO NE E ZADULJITENO DA GI POLZVAME
+ZASHTOTO MOJEM PROSTO DA SI POLZVAME MASIVITE ILI OBEKT KOETO RAPREZENTIRA VSICHKO !!!!!
+
+
+PRIER S .join()
+ let str = arr.join(" -> ");
+
+str E : 1 -> 2 -> 3 -> 4 -> 5
+
+MOJEM OT MASIV DA NAPRAVIM STRING S ELEMENTITE MU, A SUS .split() OBRATNOTO TO STRING DA NAPRAVIM MASIV
+
+let str = "1 2 3 4 5";
+let arr = str.split(" ");
+
+SAMOCHE arr shte bude sus stringcheta, TRQBVA DA GI NAPRAVIM DA SA Nomera TOVA STAVA SUS .map();
+
+arr = arr.map(x => x = Number(x))
+
+arr = arr.map(x => x * 2) // taka umnojavame vseki element * 2
+
+let filteredArr3 = arr3.filter(x => x > 6); //s .filter() filtrirame kakto si iskame
+
+
+
+V JS OBEKTA E VSICHKO DOKATO NO IMA RAZLIKA S PHP ZASHTOTO TAM  OBEKTUT E I MASIV A TUK MASIVA E OBEKT VSICHKO V JS E OBEKT VAJNO !!!!!
+Primer:
+arr4 = [1,2,3];
+typeof(arr4); // VRUSHTA object 
+
+POD OBEKT V JS SE RAZBIRA DICTIONARY
+obj = {"name": "Nasko", "age": 24};
+
+MOJEM DA VIKAME STOINOSTITE PO DVA NACHINA:
+obj["name"] // Nasko
+obj.age // 24
+
+obj[""] IMA SMISUL AKO KLUCHUT STOI V PROMENLIVA ZASHTOTO AKO E S . NQMA DA NI RAZBERE
+
+let key = "name";
+
+obj[key] // Nasko BEZ KAVICHKI !!!
+obj.key // undefined  NE RAZBIRA CHE key E PROMENLIVA
+
+NO E PREPORACHITELNO obj.name da se polzva pred obj["name"]
+
+
+
+V JS .includes() E KATO .contains V C#
+
+arr.forEach(x => console.log(x));  E OSHTE EDIN NACHIN DA PRINTIRAME VSICHKI STOINOSTI V DADEN MASIV, FUNKCIQTA forEach() MOJE DA PRAVI MNOGO NESHTA S EDIN MASIV
+
+
+
+let arr6 = [11,22,33,44,55]
+arr6.forEach((k,v) => console.log(k + " -> " + v));
+STOINOSTA E PURVOTO A INDEXSA E VTORIQ PRET ARGUMENT
+11 -> 1
+22 -> 2
+33 -> 3
+44 -> 4
+55 -> 5
+
+
+MNOGO VAJNO : Trqbva da polzvame innerHTML ako iskame injektirame neshto ot javascript kum htmla !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+ZA povecheto zada chi e dobra ideq da si conzolligvame inputa v judja predi da pochvame da reshavame. prosto submitvame dna funkciq s parametur koqto vrushta tozi parametur.
+DAVASH NA DETAILI I VIJDASH KAKUV TI E INPUTA:
+
+
+v JS mojem da pishem:
+    a = a || 1;  // tova e: a e ravno na a ili e ravno na 1
+    Ako a e undefined go vzima za edinica !!!!!!
+    NO MOJE I DA NE VURNEM STOINOST PAK SHTE RABOTI !!!
+
+    MOJEM DA ZAPAZVAME CELI FUNKCII V PROMENLIVI !
+
+    SLED KATO E PODADENA V PROMENLIVA MOJEM DA Q IZPRATIM KATO
+    PARAMETUR NA DRUGA FUNKCIQ. TOVA SE NARICHA CALLBACK FUNKCIQ !!!!
+
+
+[1, 2 ,3].forEach(x => console.log(x));
+//imame masivche na koeto sme zakachili foreach koito printira vsichki elementi na masiva
+// izpolzvame foreach kato lambda funkciq !
+
+
+//map e kato select v C# !!!  where e filter !!!
+let result = [1, 2 ,3]
+    .filter(function(x){ // TOVA SA ANONIMNI FUNKCII
+      return x > 1; // vrushtame vsichki po golemi ot 10
+    })
+    .map(x => + 10);// MOGAT DA BUDAT I LAMBDA FUNKCII
+console.log(result);
+
+
+// ANONIMNA FUNKCIQ E FUNKCIQ BEZ Ime i e POLZVANA V MEtoD
+// Callback funkciq e kogato podavame funkciq na druga funkciq
+
+
+ IFIE Funkciq  OZNACHAVA Immediatelly Invoked Function Expression
+ Mojem da suzdadem anonimna funkciq koqto vednaga da nazovem!
+ (function () {
+    return "AZ SUM ANONIMNA FUNKCIQ I VINAGI SE IZPULNQVAM !";
+ })();
+ 
+
+
+/*
+    JSON OZNCHAVA  JAVASCRIPT OBJECT NOTATION
+ JSON obekti sa tekst ili string koito raprezentira obekti
+ mojem da go stringosvame sus JSON.stringify(obj);
+ mojem i ot string da go napravim na JSON obekt kato parsvame sus JSON.parse(obj);
+* */
+
+
+Tuk ToString() e stringify();
+
+
+
+array2 = ["naso", "asi", "toni"];
+   if("asi" in array2)
+       // TAKA PROVERQVAME DALI NESHTO SE SUDURJA V MASIV
+	console.log("true");
+
+
+SORTIRANE:
+OBEKTITE V JS NQMAT SORT NO MOJESH DA SORTIRASH MASIV
+
+Sortirane na masiv po azbuchen red:
+arr.sort((a,b) => a.localCompare(b));
+
+Sortirane po Obraten red:
+arr.sort((a,b) => b.localCompare(a));
+
+
+
+
+Object.keys( obj ); vadi kluchovete ot daden obekt
+
+
+
+Kato kajem .filter(function(e) { return e;})    ili    .filter( e => e) kazvash edno i sushto neshto, SAMOCHE TRQZI FUNKCII SA NAPRAVENI DA VRUSHTAT BOOLEAN TAKACHE SHTE KASTNE REZULTATA KUM BOOLEAN 
+PRIMERNO: vrushtame 0 znachi vrushta false, ako vttushtame "" znachi pak vrushta falce etc. 
+KATO KAJEM return e;  NIE KAZVAME DA VURNE ELEMENTITE KOITO NA SA FALSE.
+
+
+
+map() e select, filter() e where
+
+
+POLZVANE NA RECHNICI:
+ZA DA SUZDADEM RECHNIK IZPOLZVAME new   let rechnik =  Map();
+I POSLE MOJEM DA PRAVIM MNGO RABOTI KATO DA SETVAME:    rechnik.set("name", "pecho");
+MOJEM DA SETVAME GETVAME, TRIEM I MNOGO DTUGI RABOTI KATO DA FOREACHVAME, DA PROVERQVAME ZA KLUCHOVE I STOINOSTI I T.N.
+
+rechnik2.forEach(e => console.log(e)) // veche kazhme che taka ni printira vsichki stoinosti
+
+rechnik2.forEach((e,k) => console.log(e + " => " + k)) // veche kazhme che taka ni printira vsichki stoinosti i kluchove    
+
+S rechnik2.has() ni kazva dali nqkoi kluch se sudurja, vrushta true ili false
+
+S rechnik2.get() ni vrushta stoinost za daden kluch 
+
+
+OBHOJDANE NA RECHNIK:
+[...rechnik2][0] Pokazva ni purviq element ot rechnika luch i stoinost 
+[...rechnik2][0][0] Vzimame purviq kluch "name"
+[...rechnik2][0][1] Vzimame stoinosta na purviq kluch "Nasko"
+
+//SLED KATO ZNAEM KAK DA OBhoJDAME VECHE MOJEM DA SI PRAVIM KAKVOTO SI POISKAME !
+SORTIRANE:
+[...rechnik2].sort((a,b) => a[0].localeCompare(b[0]))  Taka sortirame po kluchove
+[...rechnik2].sort((a,b) => b[0].localeCompare(a[0]))  Taka sortirame po stoinosti
+
+
+
+
+
+
+
+
+
