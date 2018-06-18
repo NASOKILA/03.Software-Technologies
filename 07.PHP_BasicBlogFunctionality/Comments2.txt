@@ -1,0 +1,2 @@
+Vsichki biblioteki i bundeli stoqt vuv faila AppKarnel.php .
+Ako edna biblioteka e chervena znachi trqbva da bude instalirana .

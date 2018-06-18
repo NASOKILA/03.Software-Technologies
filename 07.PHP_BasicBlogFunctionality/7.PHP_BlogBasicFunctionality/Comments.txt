@@ -1,0 +1,438 @@
+
+PHP BLOCK BASICS:
+
+V bzite RELACIQ se naricha kato vmukvame edna tablica v druga t.e
+ednata tablica polzva drugata!
+
+
+
+trqbva da instalirame MySQL za da pusnem surver, tova e baza koqto iziskva surver
+zashtoto prilojenieto trqbva da se zakachi za tozi server za da prashta zaqvkite si kum nego !!! MySQL ni e veche vuv skeleta.
+
+Imame dva .bat faila, ediniq puska servera a drugiq go spira.	
+Za da startirame prosto natiskame faila start.bat i se otvarq konzola na koqto
+nakraq ako pishe ready for connections znachi servera e pusnat.
+
+V papka HeidiSQL_9.4_Portable se namira edin grafichen tool koito shte se
+razprava s bazata danni.
+Kato vlezem v neq i vkluchim heitiSQL.exe shte vidim che chrezt tozi tool nie 
+mojem da se zakachim na nqkoi server NO SAMO AKO SerVERA NQMA IME I PAROLA !!!
+KATO KLIKNEM NA open NI SE OTVARQ BAZATA KOQTO VECHE IMAME OT SKELETA !!!
+Bazata ima komponenti no nqma registrirani useri.
+
+Mojem da registrirame potrebiteli i ot prilojenieto i ot HeidiSQL samoche nqma da
+znaem kak se keshira parolata i po dobre ot prilojenieto, no mojem da 
+manipulirame i promenqme.
+INFORMACIQTA SE ZAPAZVA NQKUDE V Cto DORI IDA RESTARTIRAME SERVERA, tova se 
+naricha persistance.
+Po princip vsichko svurzano s bazi kato dobavqne, triene promqna i manipulaciq na danni se pravi sus komandi ot MySQL ezika, no tozi tool HeitiSQL koito polzvame go pravi avtomatichno NO PAK MOJEM DA PISHEM NA MySQL
+V NEGO KATO DADEM NA Query.
+
+NE ZAtVArqI terminALA.
+When you decide to stop working on the blog, just close the terminal and run the mysql_stop.bat file.
+
+Nqma da polzame ezika MySQL, shte polzvame za sega PHP 
+
+Komunikaciqta sus servera shte q pravim chrez edin drug framework na ime Doctrine, toi e komponent na Symfony pishe se getDoctrine();
+DOCTRINE SE POLZVA CHREZ @ORM
+MOJE I CHREZ KONZOLATA.
+
+
+
+Slagai proektite si ne mnogo dulboko v papki zashtoto Windows ima ogranichenie
+v maksimalniq put (255 sinvola)
+
+If we see a yellow background color in the view name, that tells us we don’t have that view yet. We could easily create it by clicking [Alt+Enter] !!!!!
+
+
+MySQL e mnogo lesen ezik, toi e dekorativen, ne e nujno da si programist za da
+go razbirash.
+Ima vajni komandi kato UPDATE, DELETE, INSERT, SELECT, WHERE i drugi.
+
+ENTITY E KLAS KOITO E CHAST OT MODELA T.E. DURJI DANNITE.
+
+KATO SELECKCIONIRAME EDNA DUMA I NATISNEM SHIFT + F6 MOJEM DA SMENIM IMETO NA 
+NEQ I NA VSICHI KATO NEQ.
+
+redirectToRoute(RouteName); ni preprashta na daden route koito izpulnqva funkciq
+koqto renderira dadeno view !!!
+
+
+SUS $this->getUser(); vzimame tekushtiq user.
+$em e entity manager koeto zapisva neshta v bazata ot danni primerno:
+// 4) save the User!
+$em = $this->getDoctrine()->getManager();
+$em->persist($user);
+$em->flush();    // NAKRAQ VINAGI SE PISHE flush(); 
+ZAPOMNI NA IZUS !
+
+V php mnogo funkcii s nasledeni ot ezika C
+
+
+
+
+KAKVO SHTE NAPRAVIM:
+1. Model(Entity) za statiq prez konzolata
+2.Formulqr za statiq vurzan za modela data_class
+3.Kontroller s funkciq v nego koqto renderira view s tozi formulqr no predi
+tova trqbva da obrabotim tozi formulqr v kontrolera
+
+
+ZA GOLEMI TEKSTOVE E DOBre da SE POLZVA TIP text VMESTO string zashtoto string 
+ima ogranichenie.
+
+
+With the console we create an article entity and define it's properties like title, content etc.
+DOCTRINE SUZDAVA ID AVTOMATICHNO.
+Poqvqva se entity Article.php i v Repositories se poluchava i hranilishte ArticleRepositorie.php
+
+Za da se poqvi tablicata Article v bazata i za da q vidim v HeitiSQL trqbva da napishem komandata php bin/console doctrine:schema:update --force 
+PISHEM --force za da ne se schupi nishto. SLED KOETO Article se poqvqva
+
+Suzdavame si ArticleControler i funkciq create()  vnego koqto e renderita view
+create.html.twig koeto e stranica za novi artikuli !
+
+
+QSNO E CHE NI TRQBVA I FormType ZA FORMITE INACHE NQMA DA TRUGNE NISHTO, Vodi se tip na formulqr zashtoto nasledqva edin klas koito se kazva AbstractType !!!!!
+
+POQVQVA SE EDINA getBlockPrefix() FUNKCIQ KOQTO E PO DOBRE DA Q MAHNEM  !!!!!
+
+
+AKO NE NI SE POQVQVAT NESHTATA OT SYMFONYto ZNACHI TRQBVA DA GO VKLUCHIM OT SETTINGS/PHP/SYMFONY Enabla for this project I SHTE SE POQVQT VSICHKI POMOCHTNI NESHTA OT SYMFONY, Kato kliknem na new shte vijdame Form, Controller, View etc.
+
+
+        // opisvme si formulqra v configureOprions funkciqta
+        $resolver->setDefaults(
+            [
+                'data_class' => Article::class
+            ]
+        );
+
+I SI PRAVIM BUILDERA :
+
+$builder
+            ->add('title',TextType::class)
+            ->add('content', TextareaType::class);
+
+        //titela ni e TextType i trqbva da e pod Symfony/Component... a ne Doctrine/DBAL...
+        //contenta ni e ot tip TextArea
+
+SLED KOETO V ArticleControler MOJEM DA SI SUZDADEM FORMULQRA KOITO DA PODADEM NA create.html.twig FAILA.
+
+
+
+        // SLED KATO SVURSHIM RABOTA V ArticleType SI PRAVIM FORMATA I Q PODAVAME 	NA VIEWTO
+        $form = $this->createForm(ArticleType::class);
+
+        
+        return $this->render(
+            'articles/create.html.twig',
+            [
+                'form' => $form->createView()
+            ]
+        );
+
+
+SEGA TRQBVA DA PROVERIM DALI FORMATA E VALIDNA I SUBMITNATA I AKO E VSICHKO NARED DA Q ZAPISHEM V BAZATA :
+Tova se pravi v ArticleControllera razbirase.
+
+1.Suzdavame si nov statiq koqto v nachaloto e prazna:
+$article = new Article();
+
+2. Sled koeto q podavame na formulqrat, taka toi shte q napulni ako bute izpraten pravilno
+
+3. FORMATA ZADULJITELNO TRQBVA DA HENDELNE REQUESTA
+        $form->handleRequest($request);
+
+4.Requesta e dobre da go suzdavame oshte v nachaloto v create funkciqta:
+
+MNOGO E VAJNO REQUESTA DA E OT SYMFONY/COMPONENT/HTTP/FOUNDATION INACHE NQMA DA TRUGNE !!!!!!!!!!!!!!!!!!!!
+
+	public function create(Request $request)
+    	{
+	    ...
+    	}
+
+
+Requesta sudurja cqlata informaciq za izpratenite neshta ot formata no ne samo tova, sudurja i oshte mnogo drugi neshta koito mojem da dostupim:
+Napishi $request->  CTRL + SPACE i shte vidish kolko drugi neshta mojesh da dostupish.
+
+
+
+
+5.Sled kato formulqra se spravi s requesta toi znae dali e validen ili ne
+Nie trqbva da proverim dali e validen
+
+
+//Ako toi e validen i submitnat
+        if($form->isValid() && $form->isSubmitted())
+        {
+            // zapisvame Artikula v bazata !!!
+            // Zapisvaneto stava s ENTITY MANAGER sukrateno e $em
+
+            // Vzimame EntityManager:
+            $em = $this->getDoctrine()->getManager();
+
+            //Tozi Entity Manager znae kak da dobavq i trie obekti ot bazata
+
+            //Dobavq se sus persist(),  Trie se sus remove()
+            $em->persist($article); // Dobavqme si artiula v bazata
+            
+            // SLED DOBAVQNE VINAGI SE PUSKA flush() ZADULJITELNO !!!
+            $em->flush();
+
+        }
+
+
+SESIQ E DA IZPRASHTASH EDNA I SUSHTA BISKVITKA KUM SERVERA, TAZI BISKVITKA E KATO KLUCH ZA DADENATA SESIQ. AKO OBACHE ZATVORIM BRAWSERA NAPULNO POSLE KATO PAK GO OTVORIM TAZI SESIQ VECHE NQMA DA E VALIDNA KAKTO I BISKVITKATA. SHTE IMA NOVA SESIQ I NOVA BISVITKA.
+MOJE DA SE NAPRAVI I SESIQTA DA SE ZATVARQ NA DADENO VREME
+
+
+
+
+
+SEGA SHTE OBVURJEM OPREDELEN POTREBITEL:
+1. Slagame avtor v ArticleEntity-to:
+    // DOBAVQME SI AVTOR KOITO SHTE E OT TIP User
+    // I E MANY TO ONE ZASHTOTO MNOGO STATII MOGAT DA IMAT EDIN POTREBITEL
+    // SLED KATO SME SETNALI I ARTICLES V User Entity-to mojem da si dovurshim inversedBy" I GO SETVAME NA articles
+    
+    /** @var  User
+     *
+     *@ORM\ManyToOne(targetEntity="SoftUniBlogBundle\Entity\User", inversedBy="articles")
+     */
+    private $author;
+
+
+2.Kum User Entitiro dobavqme i articles:
+// DOBAVQME NA USERA I STATII
+    // TE SA OT TIP ArrayCollection KOETO E KLASCHE KATO LIST I NI DAVA MNOGO OPCII
+    // KAZVAME CHE MOJE DA E ILI ARRAYCOLECTION ILI ARTICLE MASIV
+    //SHTE IMAME METODITE I OT DVETE EDNOVREMENNO
+    //Edin potrebitel moje da ima mnogo statii znchi e OneToMany
+    // Targeta ni e Article i SUSHTOTAKA MAPVAME avtora
+
+    /** @var  ArrayCollection|Article[]
+     *
+     * @ORM\OneToMany(targetEntity="SoftUniBlogBundle\Entity\Article", mappedBy="author")
+     */
+    private $articles;
+
+
+
+3.Sega trqbva da im generirame geteri, seteri i konstruktor
+DQSNIO KOPCHE\Generate getters and setters\Articles
+I SE SUZDAVA TOVA: 
+/**
+     * @return ArrayCollection|Article[]
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param ArrayCollection|Article[] $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
+
+
+I ZA avtora v Articles:
+
+/**
+     * @return User
+     */
+    public function getAuthor(): User
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
+    }
+
+
+
+
+    // PRAVIM SI KONSTRUKTOR V User.php I MU KAZVAME CHE PURVONACHALNITE
+    //STATII SHTE SA PRAZNA KOLEKCIQ
+
+TOVA E NUJNO ZASHTOTO AKO IZVLECHEM EDIN POTREBITEL KOITO SI NQMA STATII OT 	BAZAT, SHTE NI DADE NULL I SHTE NI POKAJE EXCEPTION ZATOVA V KONSTRUKTORA MU 	DAVAME DEFAULTNA STOINOST
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
+
+4.Nakraq updatevame bazata:
+PURVO OBACHE TRQBVA DA SPREM SURVERA !!!!!!!!!!!!!!!!!!!!!!!!!! VAJNO !!!!!!
+Sus php bin/console doctrine:schema:update --force
+
+
+
+
+
+SEGA TRQBVA DA ZABRANIM DOSTUPA DO PRAVENE NA STATII NA NELOGNATI USERI:
+Tova se pravi v ArticleController razbirase  i stava chrez enda anotaciq :
+@Security("is_granted('IS_AUTHENTICATED_FULLY')")
+AKO OPItaME VLEZEM V /articles/create BEZ DA SME LOGNATI SHTE NI PREPRATI KUM LOGIN STRANICATA.
+
+
+// ZNAEM CHE POTREBITELQ E LOGNAT I SEGA TRQBVA DA NAPRAVIM TAKA CHE
+    TOI DA BUDE AVTOR NA STATIQTA:
+
+        //purvo si vzimame usera
+        $loggerUser = $this->getUser();
+
+//POSLE V IF STATEMENT-a:
+
+            // Slagame tekushtiqt lognat potrebitel da bude avtor na statiqta:
+            $article->setAuthor($loggerUser);
+
+
+
+Pravim si link ot base.html.twig na ime: Create Article
+chrez koito da vlizame v routa article_create i vprochem vlizame v stranicata
+/article/create
+
+
+
+Sega trqbva da si napravim metod koito da ni listva vsichki statii:
+Pak v ArticleController
+
+
+        //Podavame mu masiva ot statii koito gi vzimame chrez REPOSITORY t.e. hranilishe.
+
+        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+
+        // vzehme repositorito na artikulite, TO SI IMA DADENI METODI V NEGO KOITO SHTE POLZVAME
+        // mojem da tursim artikul po ID, po drug kriterii mojem da tursim samo edna statiq
+        // mnogo statii i t.n.
+
+        // s find() vzimame vsichi statii koeto e masiv razbirase.
+        $allArticles = $articleRepository->findAll();
+
+
+        //izprashtame masivat kum viewto
+        return $this->render(
+            'articles/list.html.twig',
+            [
+                'articles' => $allArticles
+            ]);
+    
+VUV VIWTO PRAVIM EDIN FORECH NA VSICHKI STATII I GI PRINTIRAME IZPOLZVAIKI TQHNITE DANNI
+
+Vuv view-to {{ article.title }} vzimame zaglavieto, 
+{{ article.content }} vzimame sudurjanieto v artikula
+{{ article.author }} vzimame avtora 
+
+
+
+
+SUZDAVAME SI FUNKCIQ KOQTO DA LISTVA SAMO STATIITE NA TEKUSHTIQ USER: 
+
+    /**
+     *@Route("/articles/mine",name="article_my");
+     */
+    public function MyArticles()
+    {
+        
+        // KAK DA VZEMEM SAMO STATIITE NA TEKUSHTIQ USER:
+        // 1.PURVO SI VZIMAME USERA 
+        // 2.I POSLE OT NEGO DURPAME VSICHKITE NEGOVI STATII
+        // 3.PODAVAME GI NA VIEWTO list.html.twig
+        
+        // KATO MU SLOJIM ANOTATIONA I KAJEM CHE E OT TIP User NI PODSKAZVA POSLE 
+        //KATO PISHEM $this-> CTRL + SPACE
+        /** @var  User $currentUserAndAuthor */
+        $currentUserAndAuthor = $this->getUser();
+
+        $allArticles = $currentUserAndAuthor->getArticles();
+
+        return $this->render('articles/list.html.twig',
+            [
+                'articles' => $allArticles
+            ]);
+
+    }
+
+
+
+
+ISKAME DA SE POKAZVAT SAMO PURVITE 50 SINVOLA I POSLE KATO CUKNEM NA BUTONA Read More da se otvarq na nova stranica celiq artikul:
+
+
+    //pravim si $summary za Read More butona
+    /** @var  string*/
+    private $summary;
+
+//Nqma da go pazim v bazata zatova nqma da ima @ORM ...
+    // ako e pod 50 sinvola da vrushta celiqt artikul, ako ne da vurne samo
+    // purvite 5 sivole i ...
+    /**
+     * @return string
+     */
+    public function getSummary(): string
+    {
+        if(strlen($this->getContent()) <= 50)
+        {
+            return $this->getContent();
+        }
+		// Ako li ne rejem purvite 50 sinvola i konkatenirame sus " ... "        
+            return substr($this->getContent(),0,50) . "...";
+        
+    }
+
+
+
+
+SEGA OSTANA SAMO DA SI OPRAVIM Read More butona:
+
+// Polzvame $id na statiite, slagame go kato parametur
+    
+    /**
+     * @Route("/articles/{id}", name="article_show")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function show($id)
+    {
+        //get current article:
+
+        //1. get the article repository:
+        $articleRepository = $this
+            ->getDoctrine()
+            ->getRepository(Article::class);
+
+        //2.From here we take the current article by $id
+        $article = $articleRepository->find($id);
+
+        //3. We send it to the view
+
+
+        return $this->render('articles/show.html.twig',
+            [
+                'article' => $article
+            ]);
+
+    }
+
+
+VAJNO !!! AKO EDNA ANOTACIQ E PODCHERTANA PO NQKAKVA PRICHINA NATISKAME 
+ALT + ENTER TAKA SE DOBAVQ ANOTACIQTA @return  !!!!!!!!!!!!  I GOTOVO :) 
+
+
+
+ZA IZPITA POCHTI VSICHKO SHTE NI E GOTOVO, SHTE IMAME SKELET, SHTE TRQBVA SAMO 
+DA RABOTIM S BAZATA, DA SI NAPISHEM FUNKCIITE V KONTROLERITE I DA SI NAPRAVIM ENTITY-ta I DA SLAGAME LINKOVE. 
+
+
