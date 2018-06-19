@@ -1,0 +1,121 @@
+
+
+
+V JAVA NQMA UNIVERSALNA PROMENLIVA VAR !!!!!!!!!!!!!!!!!!
+
+
+Razlikata mejdu List<> i ArrayList<> e che  purvoto e interface IZPOLZVAITE ArrayList<>
+
+Kakvo e interfeis? 
+INTERFEISA E DULGA TEMA.
+Oznachava nai visokoto nivo na abstrakciq koeto mojem da poluchim !!!!
+V interfeisa mojem da si suzdavame metodi koito da polzvame nadolo v ierarhiqta ot vsichki koito nasledqvat tozi interfeis	 !!!
+v C# ne mojem da pravim metodi v interfeisa.
+V Java MOJEM !
+
+
+NA IZPITa SHte IMAME SNIMKI ZA KAK DA IZGLEJDA TOVA KOETO TRQBVA DA NAPRAVIM I SHTE POLUCHIM GOTOV HTML KOD SUS VIEW ENGINA. 
+PRIMERNO : 
+Handlebars ZA JavaScript, Tiemlief ZA JAVA , Twig ZA PHP i t.n..
+
+NIE STHE TRQBVA DA SI NAISHEM SAMO KONTROLERITE I MODELITE.
+
+
+Paketite ni pozvolqvat da imame dva faila s edno i sushto ime no sa v razlichni paketi !!!
+
+UTF-8 T.E. DA MOJEM DA PISHEM I NA KIRILICA SE SUZDAVA KATO SUZDAVAME BAZATA:
+Davame na create new database i Na collation davame utf8
+
+
+
+
+VAJNO : !!!!!!!!!!!!!!!!!!!!!!!!
+25% OT CELIQ IZPIT E DA SI IMPORTIRAME PROEKTITE
+
+
+VAJNO :
+Anotaciqta: @GenerateValue(strategy = GenerationType.IDENTITY)
+GENERIRA ID-ta EDNO SLED DRUGO, IMA NQKOLKO VIDA STRATEGII
+SHTE GO POLZVAME CHESTO V JAVA
+
+
+Vajno : 
+Kogato suzdavame kolona ili pravim relaciq s druga colona i pishem imenata e po pravilno da pishem primerno: 
+author_id vmesto authorId NO DORI I DA ZBURKAME NE E GOLQM PROBLEM ZASHTOTO SPRING I HYPERNATA SE DOSEHTAT I V BAZATA NI GO ZAPISVAT TAKA: author_id 
+
+Dori i da ne razbirame ot SQL mojem da rabotim s tablicite blagodarenie na tov che Spring i IntelliJ sa dostatuchno umni i ni pomagat.
+
+
+VAJNOOOOOO !!!!!!!!!!!!!!!!!
+NA IZPITA SHTE PRAVIM EDNO I SUSHTO NESHTO NA 4 TEHNOLOGII,
+SHTE MOJE DA SI GLEDAME OT PREDISHNI SKELETI, SHTE BUDE PO LESNO OT TOVA KOETO SME PRAVILI V CHAS, NQMA DA IMA LOGVANE AUTENTIKACII, USER_ROLI, RELACII, I T.N.
+SHTE POLUCHIM GOTOVI FAILOVE S KONTROLLERITE NA KOITO SHTE PISHE // To Do ...
+
+
+
+
+Vajno: 
+V Java mojem da imame main metod vuv vseki klas TaKA MOJEm DA SI teStVAMe KAKVOto S IPOISKAME PO VSQKO VREME, dokato v C# mojem da imame samo edin.
+
+Za da polzvame stream trqbva da minem prez klasa Arrays zashtoto masivite nqmat avtomatichno stream()
+
+
+
+MNOOOOGOOOOOOOOOOOOOOOOO VAJNOOOOOOOOOOOOOOO!!!!!!!!!!!!!! :
+KAK DA CHETEM OT ONZOLATA SPISUK S INTEGERI:
+
+Scanner scanner = new Scanner(system.in);
+
+List<Integer> nums = Arrays.stream(scanner.nextLine()   //streamvame
+.split("\\s")                   			// splitvame
+.map(Integer::valueOf)					//parsvame
+.collect(Collectors.toList()))				// pravim go toList
+
+
+VAJNO!!!!!:
+POVCHETO SAITOVE POLZVAT Java, OracleDatabase E NAI SKUPATA I KACHESVENA BAZA I Sudurja Java
+ZA FRONTEND VINAGI SHTE NI TRQBVA JAVASCRIPT !!!!!!!!!!!!!!
+
+
+
+
+RELACIONNI BAZI DANNI SA TEZI SUS :   ...SQL 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
