@@ -1,0 +1,325 @@
+
+
+ZA JS MOJEM DA POLZVAME WEBSTORM ILI VISUAL STUDIO CODE.
+
+shte razgledame Node.js  posle  ExpressJS.
+
+ExpressJS e suvkupnost ot kontrolleri, modeli i vielove
+
+Node.js za da vidim dali node.js raboti prosto pishem node v CMD i ako ni dade da pishem kod na JS znachi raboti, S node.js ot konzolata mojem da startirame js failove, proekti i t.n.
+
+
+S JS MOJEM DA SUBIRAME :
+
+{} + {} T.E. OBEKT + OBEKT    KOETO NI VRUSHTA "[object Object][object Object]"
+{} + [] KOETO DAVA 0
+[] + {} KOETO DAVA "[object Object]"
+[] + [] KOETO DAVA ""
+
+
+NODE.JS E NESHTOTO KOETO STARTIRA JAVASCRIPT !
+Mnogo e FLEXIBLE t.e. moje da polzva mnogo moduli i mnogo neshta.
+Populqrno e, Ne se chupi.
+Mnogo e SCALABLE t.e. moje da raboti s malki i golqmi WORKLOADS 
+
+SCALABLILITY oznachava che moje da izdurja na mnogo i na malko useri i trafik na vednuj, t.e. kak se spravq s tova da ima malko hora(malko load) i mnogo 
+Node.js e dizainut za tova
+
+WORKLOADS = useri i trafik
+
+Node.js can work as a web server.
+A WEB SERVER E NQKAKUV OTDELECHEN KOMPIUTUR VURZAN KUM INTERNET KOITO PROSTO SEDI I CHAKA NQKOI DA MU POISKA NQKAKVA INFORMACIQ T.E. NQKAKVA ZAQVKA, VSEKI KOMPIUTUR MOJE DA E SURVER, DOBRE E HARD DISKUT NA TOZI KOMP DA IMA BACKUP T.E. AKO NESHTO SE SLUCHI S KOMPA DA MOJE OT HARD DISKA DA SE IZVLECHE INFORMACIQTA.
+PRIMERNO NIE PISHEM NQKAKUV LINK V BROWSERA T.E. IZPRASHTAME ZAQVKA KUM NQKAKUV SI SERVER KOITO GO VIJDA TOVA I NI VRUSHTA POTURSENATA STRANICA AKO RAZBIRASE TQ SUSHTESTVUVA.
+SERVEREA E KOMPIUTUR KOITO NI VRUSHTA NQKAKVI RESURSI NA BAZTA NA NQKAKVI ZAQVKI KOITO SME NAPRAVILI.
+
+SLEDOVATELNO NIE S NODE.JS MOJEM DA NAPISHEM NQKAKVO PRILOJENIE KOETO DA VRUSHTA RESURSI NA NQKOI USER AKO TOI NAPRAVI ZAQVKA KUM NASHETO PRILOJENIE.
+
+
+V PHP PROBVAHME XAMPP KOETO E LOKALEN SERVER, S NEGO KATO OTIDEM I NAPISHEM localhost: IZPRASHTAME ZAQVKA KUM TOZI LOKALEN SERVER
+
+
+NODE.JS VECHE RESHAVA MNOGO PROBLEMI KOITO PROGRAMISTA MOJE DA IMA KATO:
+1.AUTENTUKACIQ
+2.SESII
+3.BISKVITKI
+4.VRUZKA S BAZA DANNI CHREZ MONGOOSE, BOOKSHELF, SEQUELIZE ETC.
+5.VIEWS  SUS  TEMPLATE VIEW ENGINES KATO HANDLEBARS, PUG, MUSTACHE I DR.
+6. NODE.JS E BURZ ZASHTOTO POLZVA C++
+
+S NODE.JS MOJEM DA SUZDAVAME SERVER PO SLEDNIQ NACHIN:
+Pishem sledniqt kod v konzolata sled kato sme napisali node
+
+s  require('http'); nie kazvame che iskame da vzemem http protokol
+
+C\:>node
+> http.createServer(function(req, res){ //req = request, res = response
+...res.end("Hello World!")
+...}).listen(8080)
+
+SUZDADOHME SI SERVER KOITO DA SLUSHA NA PORT 8080 I AKO VLEZNAM NA localhost:8080 SHTE VIDIM CHE NI PISHE Hello World!
+
+KAKVO E http: i https: TOVA SA PROTOKOLI S KOITO BRAWSERA KOMUNIKIRA S USERA I SERVERITE.
+
+
+
+ const http = require('http');
+ http.createServer((req,res) => 
+{
+	res.write('zdrasti'); 
+	res.end();
+})
+.listen(1337)
+
+EXPRESS.JS IDVA NA POMOSHT KATO NI POZVOLQVA DA IZVURSHVAME PRIMERNO DA VURNE DADEN FAIL ILI HTML, DA PROVERI ZA AUTETIKIRANE I DRUGI PODOBNI NESHTA KOITO POSTOQNNO SE SLUCHVAT V WEB PROGRAMIRANETO.
+POZVOLQVA NI DA GI PRAVIM BUKVALNO S EDIN RED ZASHTOTO GI IMA VECHE VBUILDNATI.
+TOVA E IDEQTA NA EXPRESS.JS T.E. DA NI ULESNQVA
+EXPRESS.JS E PROSTO EDIN JAVASCRIPTSKI KOD KOITO MNOGO NI ULESNQVA RABOTATA.
+
+
+GET ZAQVKI:
+GET ZAQVKATA SE VIZUALIZIRA V URL-a GET ZAQVKATA NA SE PROMENQ, POLZVA SE KOGATO ISKAME NESHTO DA E NA NASHITE KRITERII I VSICHKO KOETO PISHEM OTIVA V URL-a
+TE NE PROMENQT NISHTO PO SERVERA.
+PRIMERNO KOPIRAM DADEN LINK OT NETA I TI GO PODAVAM I TI KATO GO KLIKNESH OTVARQSH SUSHTATA STRANICA KOQTO AZ SUM NAMERIL.   
+
+POST ZAQVKI:
+TE SA PO RAZLICHNI, TUK DANNITE KOITO USERA POPULVA SA SKRITI
+PRIMERNO KATO PAZARUVAME I SI PISHEM KODA NA KARTATA BI BILO SMESHNO DA SE VIZUALIZIRA NA URL-a.
+ILI KOGATO SI VLIZAME V BANKOVATA SMETKA AKO NQKOI SE DOBERE DO LINKA I TOI MOJE DA VLEZE I DA MI VZEME PARITE.
+POST ZAQVKITE KRIQT DANNITE I PRAVQT PROMENI PO SERVERA.
+PRIMERNO KATO E REGISTRIRAME V DADEN SAIT NIE PROMENQME NESHTO POSERVERA ZASHTOTO DOBAVQME OSHTE INFORMACIQ KUM NEGO.
+ILI KOGATO KUPUVAM NESHTO ILI DOBAVQM NOVA OBQVA V DADEN SAIT, TAKA PROMENQM NESHTA PO SERVERA.
+
+EXPRESS.JS SE OPRAVQ DOBRE SUS POST I GET ZAQVKI.
+EXPRESS.JS IMA I ROUTING KOETO E 
+
+
+NPM E NESHTO KOETO SUDURJA GOTOVI NESHTA NAPRAVENI ZA NODE.JS I VURVI RUKA ZA RUKA SUS EXPRESS.  NO TRQBVA DA SE INSTALIRA KUM NASHIQ NODE.JS PROEKT 
+
+
+S app.get('/', (req, res) => {
+// s app.get() kazvame ako dostupim na daden url da ni vurne kakvoto iskame nie
+
+// tuk si pishem logikata i kakvo iskame da ni vurne
+})
+
+
+Expresa nqma smo po sebesi baza danni i viwta i dr toi otgovarq samo za kontrollerite.
+Polzvame Mongoose koeto otgovarq za modelite.
+
+
+AKO IMAME EDIN FAIL 'A' KOITO ISKA DA IZPOLZVA INFORMACIQTA OT FAIL 'B':
+Vuv 'A' trqbva da pishe nakraq :module.exports() ZA DA SE NAPRAVQT DANNITE PUBLICHNI 
+
+Fail A:
+
+const helloMessage = 'Hello World!';
+const cats = 'Sisa, Garfield, Moni'; 
+
+module.exports = { hello: helloMessage, cats: catsMessage}
+// TAKA DVETE KONSTANTI STAVAT PUBLICHNI I MOGAT DA SE POLZVAT OT DRUGI FAILOVE.
+
+VUV FAIL 'B' KAZVAME CHE ISKAME DA POLZVAME FAIL 'A':
+const data = require('./A');
+// slagame si celiq fail v konstanta opisvame putq ot kudeto sme do kudeto e faila.
+
+Veche vuv fail 'B' mojem da polzvame neshtata ot fail 'A'.
+
+
+VAJNO!!! SAITOVETE NAPRAVENI NA C++ SA PO DOBRI NA PERFORMANCE OT TEZI NAPRAVENI NA DRUGI EZICI, PERFORMANCE E BURZINA NA OTVARQNE NA SAITA. 
+AKO EDIN SAIT NA JS ZAREJDA ZA 0,00015 SEKUNDI, TOZI NA C++ ZAREJDA ZA 0,00000015
+SLEDOVATELNO TOZI NA C++ E MNGOGO PO BURZ NO NA USERA NE MU PUKA.
+C++ SE POLZVA PO SKOTO ZA IGRI ILI DRUGI NESHTA KOITO IZISKVAT POVECHE PERFORMANCE.
+
+
+VAJNO !!!
+Routes.js faila opisva vsichki url-i koito iskame nasheto prilojenie da sudurja i kum koq funkciq te se mapvat
+
+
+VAJNO !!!
+Modelite se pravqt chrez Mongoose.
+
+
+Primer za model kotka.
+let modelSchema = mongoose.Schema({
+	id: Schema.Types.ObjectId,
+	name: {type:String, required: true},
+	age: {type: Number, min: 0, max: 100},
+	isAlive: Boolean
+});
+
+
+let cat = mongoose.model('Cat', catSchema); // TAKA SI Q SUZDAVAME KATO MODEL
+
+
+VAJNO !!!
+Viewta-ta tuk  sa chist HTML, i mojem da da puhame danni sus {{ ... }}
+Mojem da pishem if i else {{#if ....}} if e sus #
+ZA NASHIQ KALKULATOR SHTE IZPOLZVAME Handlebars, MINALIQT PUT S PHP-to POLZVAHME Twig !!!
+
+VAJNO!!!
+Kontrollerite trqbva da navurjat modelite sus viwtata, bazata i da izvurshva vsichki operacii.
+
+
+VAJNO!!!
+S let catId = request.params.id NIE VZIMAME ID-to na dadena kotka primerno ot URL-a zashtoto id-to e chast ot GET requesta
+Posle sus FindBiId(catId). then(cat => {
+    //napravi neshto s tazi kotka
+})
+TAKA SE VZIMAT NESHTA OT BAZATA
+
+
+
+
+LAB:
+
+1.Otvarq me si skeleta, runvame proekta kato natisnem zeleniqt Play buton
+na konzolata ni izliza na koi link da vlezem za da vidim nashiq JS app
+
+
+
+2. Pravim si view v views/ index.hbs i si kopirame koda ot laba
+
+3. Pravim si model Calculator.js:
+
+// slednata funkciq shte se izvika kogato kogato napishem new Calculator()
+// t.e. kogato si napravim nova instanciq na nashiqt kalkulator
+function Calculator(leftOperand, operator, rightOperand)
+{
+    // definirame si operandite
+    this.leftOperand = leftOperand;
+    this.operator = operator;
+    this.eightOperand = rightOperand;
+
+
+    // pravim si funkciq koqto da ni reshava rezultata koito 
+    // zavisi ot operatora:
+    this.CalculateResult = function(){
+
+        let result = 0;
+        switch (this.operator)
+        {
+            case '+':
+                result = this.leftOperand + this.rightOperand;
+                break;
+            case '-':
+                result = this.leftOperand - this.rightOperand;
+                break;
+            case '*':
+                result = this.leftOperand * this.rightOperand;
+                break;
+            case '/':
+                result = this.leftOperand / this.rightOperand;
+                break;
+        }
+
+        return result;
+    }
+    
+}
+
+    // Trqbva da si exportnem modela za da moje da se polzva ot drugi failove.
+    module.exports = Calculator;
+
+
+
+4. Pravim si route koito da izvikva kontroller action:
+Blagodareniq na ExpressJS cqlata ni logika za routove se namira vuv failut config/routes.js
+
+const homeController = require('./../controllers/home')  //taka si pravim vruzka s home kontrollera v papka kontrollers za da mojem da vikame metodite ot nego
+
+module.exports  // veche znaem kakvo pravi 
+
+app.get('/', homeController.indexGet) // Tozi kod kazva na node.js da sluha za get zaqvki do tozi '/' route i ako ima takive da indexGet metoda ot HomeController ZA TOVA E ZADULJITELNO DA INPORTNEM KONTROLLERA S require(); METODA.
+
+
+NI SHTE IZPRASHTAME NESHTATA PO POST REQUEST 
+DOBAVQME SI SLEDNOTO V module.exports:
+
+  // ako poluchim post zaqvka na '/' da izpulni indexPost actiona ot home Kontrollera
+    // TRQBVA DA SI NAPRAVIM TAKUV ACTION V HOMEKONTROLLERA
+    app.post('/', homeController.indexPost);
+
+
+
+
+5. Trqbva da si napravim indexPost metod v kontrollera pak v module.exports :
+// TRQBVA DA VZEMEM TOVA KOETO E IZPRATENO OT USERA DA SI NAPRAVIM KALKULACIQTA
+I DA PODADEM VSICHKO NA VIEWTO
+
+    // SUZDAVAME SI INDEX POST ACTION
+    indexPost: (req, res) => {
+        // purvo trqbva da si vzemem requesta koito e izpraten ot usera
+
+        //tova stava sus req.body
+        // NO ZA DA VZEMEM TOVA KOETO NI E NUJNO PODAVAME 'calculator' KATO PARAMETUR:
+        let calculatorBody = req.body;
+        let calculatorParams = calculatorBody['calculator'];
+
+
+        // PREDI DA POLZVAME NASHQ MODEL TRQBVA DA KAJEM NA KONTROLLERA CHE SUSHTESTVUVA
+        // PISHEM let Calculator = require('../models/Calculator');
+        // davame papka nazat, vlizame v models i pishem imeto na faila
+
+
+        // sega trqbva da si napravim nov kalkulator za da mojem da zapazim neshtata v nego
+        let calculator = new Calculator();
+
+
+        //Parsvame tova koeto sme poluchili ot usera zashtoto gi poluchavame kato stringove
+        //i gi setvame v noviqt ni kalkulator
+        calculator.leftOperand = Number(calculatorParams.leftOperand);
+        calculator.rightOperand = Number(calculatorParams.rightOperand);
+        calculator.operator = calculatorParams.operator;
+
+
+
+        /*
+        *
+        * PO PRINCIP MOJEM PROSTO DA PODADEM SLEDNITE PARAMETRI KUM NOVIQT KALKULATOR:
+        * let leftOperand = Number(calculatorParams.leftOperand);
+        * let rightOperand = Number(calculatorParams.rightOperand);
+        * let calculator.operator = calculatorParams.operator;
+        *
+        * let calculator = new Calculator(leftOperator, rightOperator, operator);
+        * 
+        * */
+
+
+
+
+
+        // Sega e vreme da izpolzvame funkciqta calculateResult() koqto si napravihme v modela
+        // Tova obache go pravim sled kato setnem stoinostite kum calculator
+        let result = calculator.CalculateResult();
+
+
+        // renderirame  viewto index v papkata home samoche mu podavame KATO OBEKT
+        // calculatora i rezultata ot funkciqta CalculateResult();
+        // PARAMETURUT VINAGI E JAVASKRIPTSKI OBEKT, key -> value PAIRS
+        res.render('home/index', {'calculator': calculator, 'result':result});
+
+    }
+
+
+
+// OT BRAWSERA KATO VUVEDEM CHISLATA I KLIKNEM BUTONA, CHREZ F12/Network/localhost/Headers/ i nai nakraq e Form Data 
+CHREZ KOETO MOJEM DA VIDIM KAKVO SME VUVELI.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
