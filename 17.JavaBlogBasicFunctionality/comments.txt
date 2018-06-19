@@ -1,0 +1,137 @@
+
+
+Shte polzvame pring framework
+
+
+KAK SE OTVARQ SKELETA ?  
+MNOOGO VAJNOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!
+1.KLIKVAME NA IMPORT PROJECT
+2.IZBIRAME Maven
+POSLE NEXT DOKATO NE SE ZAREDI PROEKTA !
+
+V Java imame anotacii koito rabotqt kato v php 
+
+
+Asinhromno programirane: 
+Kogato pishem programa i q pusnem nie realno puskame edna nishka ot procezora.
+Zatova koda se chete ot gore na dolo i daden kod primerno trqbva da chaka kodut predi nego da se izpulni.
+Asinhomnoto programirane ni pozvolqva da puskame oshte nishtki i da se izpulnqva daden kod ednovremenno bez znchenie kude e.
+TRUDNO E. ZA PO NAREDNALI E.
+
+Packajite ni pomagat, NE dava greshka ako imame dva faila s edno i sushto ime v razlichni pachaji.
+
+VAJNO: !!!!!!!!!!!!!!!!!!!!!!!!!!
+REPOSITORITATA SA NACHINA DA KOMUNIKIRAME S BAZATA.!!!!!!!!!!!!!!!!!!!!!!!!
+KATO SE SUZDAVA MU SE KAZVA CHE E OT TIP INTERFACE A NE KLAS !!!!!!!!!!!!!!!!!!!!
+
+BLAGODARENIE NA REPOSITORITATA MOJEM DA VZIMAME NESHTA OT BAZATA I DA GI POLZVAME LOKALNO.  TOI E PROSTO PAKET S IME REOSITORY KOITO DURJI V NEGO INTERFACE, TOI NE E KAS. NE MOJE DA SUDURJA FUNKCIONALNI METODI A SAMO DA GI DEKLARIRA.
+
+MNOOOOOGO VAJNOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!
+PRI SUZDAVANETO NA REPOSITORI TRQBVA DA ZNAEM NA IZUS SLEDNOTO:
+@Repository
+public interface ArticleRepository extends JpaRepository<Article, Integer>{
+
+
+}
+
+
+	
+ANOTACIITE V JAVA SE PISHAT PREDI Get metodite ZASHTOTO GET METODA RABOTI DIREKTNO S POLETO.
+
+MOGAT I DA SE SLAGAT I PREDI POLETATA ZA DEKLARIRANE!!!!!!!!!!!
+PRIMER:
+@Entity
+private Integer Id;
+
+
+
+
+th:action{article/create} NI REDIREKTVA KUM TOZI DADEN ACTION
+th:href{/} NI REDIREKTVA KUM GLAVNATA STRANICA
+
+Overall the usage of "@{}" means that we want to be redirected to the route in the curly brackets
+
+
+Suzdavame si ArticleBundingModel t.e. model koito da validira tova vuv formata !!!
+Suzdavame si title i content i im davame not null za da ne moje da imame prazna forma
+
+
+
+
+
+
+
+
+POVECHETO KOMENTARI SA PO PROEKTA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Rabotil sum v Entity/Article, Entity/User, ArticleRepository, ArticleController, viewtata, binfingModel/ArticlebinfingModel
+
+
+
+
+
+
+
+
+@Transient // We are saying that this method will not be saved in the DB
+    public String getSummary(){
+
+        //rejem ot nachaloto do getContent() deleno na 2 i dobavqme tochici
+        return this.getContent().substring(0, this.getContent().length() / 2) + ". . .";
+    }
+
+
+
+
+
+
+
+
+  // We need the Article repository to get all the articles
+    private final ArticleRepository  articleRepository;
+
+    // DOBAVQ NI GO KATO PARAMETUR NA KONSTRUKTURA I S @Autowired go injectvame
+    @Autowired
+    public HomeController(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
+
+
+
+
+ // We use the Article repository to get all the articles
+        List<Article> allArticles = this.articleRepository.findAll();
+
+
+
+        //WE NEED TO ADD THEM TO DTHE MODEL SO THAT THE VIEW CAN USE THEM :
+        model.addAttribute("articles",allArticles);
+
+
+
+
+VAJNO !!!: NE NI TRQBVA BINDING MODEL KOGATO NQMAME FORMA !!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+VAJNO !!!!: ROLITE SA VAJNI, IMA ROLQ USER, ROLQ ADMIN, ROLQ CLIENT ZA NQKOI SAITOVE A PRODAJBA, ROLQ ZA PRODAVACH I DRUGI .
+
+
+
+
+
+MNOGOOOOOOOO VAJNOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!!!!
+POCHTI VINAGI SHTE NI TRQBVA Model model ZSHTOTO CHREZ NEGO SI VMUKVAME NESHTATA KUM VIEWTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ZA PUTISHTATA E DOBRA IDEQ DA KOPIRAME IMENATA OT VIEWTO ZSHTOTO E PO TRUDNO DA GI ZBURKAME!!!
+
+@PathVariable OZNACHAVA CHE TAM SHTE IMA NQKAKVO ID OT URL-a
+
+REPOSITORITATA SA SUS @Autowired za da imat avtomatichno metodi kato findOne(), findAll() i DR.
+
+
+
+
+
+
+
+
