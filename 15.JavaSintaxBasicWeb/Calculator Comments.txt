@@ -1,0 +1,244 @@
+
+
+ZAPOCHAVME KALKULATORA:
+
+SHTE SE ZBLUSKAME SUS :
+1.Spring KOITO E EDIN FRAMEWORK ZA JAVA!
+2.Hybernate KOITO E EDIN FRAMEWORK KOITO RABOTI S BAZATA
+3.Thymeleaf KOITO E HTML TEMPLATE RESOLVER I NI POZVOLQVA DA PISHEM HTML S NESHTA V NEGO!
+
+Hyberate e ORM KOETO E DOSTUP DO BAZATA DANNI I MOJEM DA OBRABOTVAME, ZAPISVAME, IZVLICHAME ELEMENTI I T.N.
+NIE SHTE SE ZBLUSKAME SUS SpringData KOITO E EDIN MODUL NA Spring I V SEBESI SUDURJA Hybernate.
+
+V JAVA KAKTO V PHP IMAME ANOTACII KATO Entity-ta, dobavqne na tablici, i mnogo drugi KOITO SE PISHAT S @ PRED TQH OSHTE PREDI SUZDAVANETO NA CLASA I SA JULTI !!!!!!!
+
+@Column(name = "email", unique = true, nullable = false)
+PRIMER: public string getName(){
+	return name;
+}
+
+
+//ANOTACIITE OPISVAT ODA POD TQH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Spring e edin ot nai izpolzvanite frameworci v sveta MOJE DA PRAVI MNOGO AMA MNOOOOGO NESHTA, NE SAMO ZA WEB MVC!
+
+Spring Boot :
+Tova SI E SPRING SAMOCHE e KONFIGURAN VECHE, ZASHTOTO EDNA KONFIGURACIQ NA EDIN Spring PROEKT MOJE DA OTNEME DO 5 meseca.
+PO MNOGO PO BURZ NACHIN MOJE DA SE KONFIGURIRA PROEKT.
+
+
+MNOOOOOGO VAJNO!!!!!!!!!!!!!!!!!!!!!!!!! :::
+PRAVILNIQT NACHIN DA SE OTVARQ PROEKT E CHREZ Import A NE CHREZ Open ZASHTOTO OT Open MOJE DA NI DADE GRESHKA,
+KATO GO IMPRTVAME KLIKVAME Import project from external model I SELEKTIRAME Maven ZASHTOTO TOVA E Tool-at KOITO SHTE IZPOLZVAME !!!!!!!!!!!!
+DAVAME Next NA NASTROIKITE, NEXT NA JDK INTERPRETATORA AKO VECHE IMAME TAKUV,
+DAVAME IME NA PROEKTA I CUKAME Finish. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+V papkata src se namirt papkite main i resourses se namira nai vajnoto za nas.
+Vutre imame podpapki I V TQH SE NAMIRAT KONTROLERITE, MODELITE I VEWTATA !
+
+Papkata static sudurja publichni resursi t.e. moje da se gledat ot vsichki !
+V papka template sedqt nashite vewta !!!
+
+
+
+
+
+VAJNO !!!!!! :
+AKO NE NE DAVA ZELENKOTO PLAY BUTONCHE DA STARTIRAME PROEKTA SI VLIZAME V Configurations, Zelenoto plusche, add new Spring Boot i KATO MAIN KLAS CUKAME NA Brawse butona sus ... ot strani iAVTOMATICHNO NI POKAZVA KOI KLAS DA MU DADEM KATO MAIN, SEGA VECHE MOJEM DA SI RUNNEM PROEKTA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+NA SPRING DEFAULTNIQT PORT E 8080 SLeDOVATELNO TRQBVA DA OTIDEM NA localhost:8080 ZA DA SI VIDIM KALKULATORA !
+
+
+
+
+
+1.
+Kopirame si html-a v calculatorForm.html view-to OBACHE TRQBVA DA GO PODADEM NA base-Layout View-to: 
+
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+        <main th:include="${view}"></main> // TUK I GO PODAVAME !!!
+    </div>
+....
+
+2.
+// DOBAVQME SI ${view}-to V BASE-LAYOUT 
+		model.addAttribute("view", "views/calculatorForm");
+		return "base-layout";  // VRUSHTA BASE LAYOUT
+
+// VAJNO !!!  SPRING ZAPOCHVA DA TURSI VEWTA-ta OT PAPKATA Templates ZAHTOTO TAM SA VSICHKI VIEWT-a
+
+
+
+3.
+Suzdavame si papka Entity i si pravim model Calculator vutre.
+// TUK PAPKA E PACKAGE !!!
+// DOBAVQME SI OPERANDIDE I OPERATORA KATO PRIVATE, GETERI, SETERI, KONSTRUKTOR I METOD KOITO DA KALKULIRA REZULTATA I V NEGO SHTE IMA SWITCH CASE STATEMENT !!!!!
+
+package com.softuni.Entity;
+
+public class Calculator {
+
+    private double leftOperand;
+    private double rightoperand;
+    private String operator;
+
+    public Calculator(double leftOperand, double rightoperand, String operator) {
+        this.leftOperand = leftOperand;
+        this.rightoperand = rightoperand;
+        this.operator = operator;
+    }
+
+    public double getLeftOperand() {
+        return leftOperand;
+    }
+
+    public void setLeftOperand(double leftOperand) {
+        this.leftOperand = leftOperand;
+    }
+
+    public double getRightoperand() {
+        return rightoperand;
+    }
+
+    public void setRightoperand(double rightoperand) {
+        this.rightoperand = rightoperand;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
+
+    public double calculateResult(){
+
+        double result;
+        switch (this.operator)
+        {
+            case "+":
+                result = this.getLeftOperand() + this.getRightoperand();
+                break;
+            case "-":
+                result = this.getLeftOperand() - this.getRightoperand();
+                break;
+            case "*":
+                result = this.getLeftOperand() * this.getRightoperand();
+                break;
+            case "/":
+                result = this.getLeftOperand() / this.getRightoperand();
+                break;
+            default: // KATO DEFAULT MU DAVAME 0
+                result = 0;
+        }
+
+        return result;
+    }
+
+
+}
+
+
+
+
+4.
+Dobavqme si post metoda !!!!!!!!!!!!!!!!!!!!!!!
+
+// TOI TRQBVA DA SLUSHA NA URL "/"
+metodi v home kontrolera, get i post :
+
+	@GetMapping("/") // SLUSHA NA TOZI URL
+	public String index(Model model) {
+
+		//Dobavq atribut na modela, MODELA E TOVA KOETO PODAVAME NA VIEWTO!
+		model.addAttribute("operator", "+");
+		// DOBAVQME SI ${view}-to KOETO BASE LAYOUT OCHAKVA
+		model.addAttribute("view", "views/calculatorForm");
+		return "base-layout";  // VRUSHTA BASE LAYOUT
+	}
+
+	@PostMapping("/") // KAZVAME CHE TOZI METOD SHTE E POST ZAQVKA!
+	public String  calculate(
+			@RequestParam String leftOperand,
+			@RequestParam String operator,
+			@RequestParam String rightOperand,
+			Model model){
+		// VZEHME SI PARAMETRITE OT FORMICHKATA NO TE IDVAT KATO STRINGCHETA
+		// TRQBVA DA GI PARSNEM PREDI DA GI PODADEM NA NASHIQ KALKULATOR!
+
+		double num1;
+		double num2;
+
+		try{
+			num1 = Double.parseDouble(leftOperand);
+		}catch (NumberFormatException ex){
+			num1 = 0;
+		}
+
+
+		try{
+			num2 = Double.parseDouble(rightOperand);
+		}catch (NumberFormatException ex){
+			num2 = 0;
+		}
+
+		// SUZDAVAME SI KALKULATORA
+		Calculator calculator = new Calculator(num1, num2, operator);
+
+		// VZIMAME SI REZULTATA OT SUZDADENIQ METOD
+		double result = calculator.calculateResult();
+
+		// SEGA SAMO TRQBVA DA IZPRATIM REZULTATA NA VIEWTO
+		// SAMOCHE ZA DA ZAPAZIM SUSTOQNIETO NA KALKULATORA SHTE IZPRATIM I
+		// leftOperand, rightOperand i operator IZPOLZVAIKI model.AddAttribute Funkciq
+
+		model.addAttribute("leftOperand", calculator.getLeftOperand());
+		model.addAttribute("rightOperand", calculator.getRightoperand());
+		model.addAttribute("operator", calculator.getOperator());
+
+		// Izprashtame si rezultata
+		model.addAttribute("result", result);
+
+		// i nakraq si izprashtame view-to koeto e views/calculatorForm
+		model.addAttribute("view", "views/calculatorForm");
+
+		return "base-layout";
+	}
+
+
+
+
+
+
+
+
+•	@GetMapping("/") ? the piece of code, which binds a URL Route to a method, so it can execute the action when our user calls the specified route (right now, that’s “/”).
+•	public String index(Model model) ? This is the actual controller action. It’s a method, which holds the logic, which will be executed, when it’s called. 
+It has one parameter: model – it holds the data, which will be passed to the view for processing. Remember – all we’re doing here is returning different HTML, based on the logic we’ve implemented in our app.
+•	model.addAttribute(String, String) ? this piece of code takes 2 parameters – the first states the name of the attribute we’re going to send to the view. The second one – the actual data.
+•	return "base-layout" ? This function renders a layout in the response (in essence, takes whatever’s inside of “templates/base-layout.html”, runs it through the Thymeleaf templating engine, and returns it to the user.
+
+RequestParam : That’s just a fancy way of getting the form data.
+
+OSTAVIL SUM OSHTE BELEJKI V APLIKACIQTA
+
+
+
+
+
+V SPRING TRQVA DA VNIMAVAME MNOGO S IMENATA, SAMO AKO SA EDNAKVI IMENATA MOJEM DA NAPULNIM NASHIQ KALKULATOR.
+
+
+
+
+
+
+
+
+
+
+
+
