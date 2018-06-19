@@ -1,0 +1,59 @@
+
+MONOOOOOOOOOOOOOOOOOOOOOGO VAJNOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!!!!!!
+KAK DA SI NAPRAVIM SOBSTVENO SUKRASHTENIE NA KOD ?
+1.PISHEM SI PURVO KODA I GO SELEKTIRAME.
+2.OTIVAME NA tools/ Sava as live template.
+3.OTVARQ SE PROZORCHE I OTIVAME NA abbreviation POLETO
+4.TAM SI PISHEM SUKRASHTENIETO  I OT STRANI DESKRIPCIQTA AKO ISKAME
+
+HUBAVOTO E CHE AKO NESHTO IMA NUJDA OT IMPORT, TO AVTOMATICHNO NI SE IMPORTVA.
+
+
+int? OZN che moje da ima int no moje i da sudurja i null !!!!!!!!!!!!!!!!!
+
+   
+// taka sruvnqvame do vtoriq znak sled zapetaqta
+	System.out.printf("%s -> %.2f%n", fs.getName(), fs.getAverageGrade());
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
