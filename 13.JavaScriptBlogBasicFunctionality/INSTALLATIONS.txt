@@ -1,0 +1,28 @@
+
+
+Instalirame si web storm ili intelli j s plugini, instalirame node.js, 
+instalirame mongoDB , otivame v bin papkata i otvarqme mongo.exe za da opravim konfiguraciqta
+
+
+Inside the bin folder you can see a bunch of executable files (.exe). Among them mongo.exe is the client shell and mongod.exe is the server.
+Before running mongod and mongo from Command Prompt, you need to
+add Path Environment Variables for MongoDB. Follow the following steps to set up the PATH environment variable:
+1. Right click on Computer
+2. Click on Properties
+3. Click on Advanced System Settings which opens up a pop up box as below
+4. Click on Environment variables and do as shown:
+
+
+DOBAVQME PUTISHTA V ENVIRONMENT VARIABLES NA mongo.exe i mongod.exe
+
+V C si pravim papka data i v neq si pravim papka db
+
+path do mongo C:\Program Files\MongoDB\Server\3.4\bin
+
+INSTALIRAME SI ROBO MONGO,SUZDVAME SI NOVA VRUZKA KATO I DAVAME IM I  PORT PO DEFAULT SERVERA VURVI NA PORT 27017.
+NO PURVO TRQBVA DA PUSNEM mongo i mongod FAILOVETE OT C:\Program Files\MongoDB\Server\3.4\bin     INACHE SHTE MI DADE GRESHKA.
+
+
+
+
+

@@ -1,0 +1,298 @@
+
+
+
+
+JavaScript is a dynamically typed language. The type of our variables is defined when the project is run. It’s called JIT
+(or Just In Time compilation). This is why this language is slow compared to C++ and even C#/Java. We have several
+keywords to declare and initialize a variable (var, let and const – and do not use var – just don’t). Use const when
+you create a constant value and let for any other uses.
+
+
+The above command “require” will look into our libraries and will try to find a module with name: “mongoose”
+it’s like calling using System in C#
+
+
+Unfortunately, when we use “let” it gets highlighted in red. This is because we have to switch our JavaScript
+version to ECMAScript 6. Press [Alt + Enter] to popup the helper, then click [Enter] and everything should be
+fine.
+
+
+
+Suzdavame si user scheme:   
+
+let userSchema = mongoose.Schema(
+    {
+        email: {type: String, required: true, unique: true},
+        passwordHash: {type: String, required: true},
+        fullName: {type: String, required: true},
+        salt: {type: String, required: true}
+    }
+);
+
+posle user model :
+const User = mongoose.model('User', userSchema);
+
+i nakraq trqbva da go exportnem:
+module.exports = User;
+
+
+Suzdavama si config failove i dadabase failove v config papka.
+Suzdavame express.js , passport.js, database.js  failove  v papka config
+i app.js v papka SoftUniBlog.
+
+Create the Register and Login user
+
+then we have to create a controller to control it
+and we add a function to the user.js controller to render it
+and the nwe defint the route which will say when the action in the controller should be called.
+
+we run the server, when we go on localhost:3000/user/register
+
+We create an Article model
+insade it a scheme
+we export it and we add a reference to the dadabase.js file so the dadabase knows that this model exists and it can use it !!!
+
+require('./../models/Article');
+
+
+//CREATE Author and Article RELATIONSHIP its called a MIGRATION
+relations can be: One to One, One to Many, Many to Many. There is one more called One to Few. 
+
+first we do it in the User.js model: 
+we just add :  article: {type: [mongoose.Schema.Types.ObjectId], default: []}
+
+which will have the type ObjectId array type, and a default value, which is an empty array. This is our migration.
+
+
+
+//Apply dadabase migrations
+
+
+
+
+V ROBOMONGO KATO DADEM DQSNOTO KOPCHE NA BAZATA I 'Open Shell' SE OTVARQ TERMINALCHE NA KOETO MOJEM DA PISHEM KOMANDI.
+ZA DA PUSNEM KOMANDATA NATISKAME F5.
+
+
+
+TRQBVA DA NAPISHEM KOMANDATA : db.getCollection('users').update({articles: {$exists: false}}, { $set: {articles: []}}, {multi: true})
+
+Press F5
+
+
+1.db.getCollection('users')  -  namira vsichki useri
+2.update()  -   Oznachava update
+3.{articles: {$exists: false}}   -   For every user where articles does not exist
+4.{multi: true}   -   Update all matches
+
+
+
+
+// Create the article controller
+Suzdavame si metod
+
+// Mojem da izvikame model chrez mongoose samo kato mu napishem imeto !
+const Article = require('mongoose').models('Article');
+
+// We want to create a method which will render the form for creating an article.
+// The controller might look like this.
+
+module.exports = {
+    createGet: (req, res) => {
+
+        //renderirame view koeto trqbva da si napravim
+        res.render('article/create');
+    },
+
+	createPost: (req, res) => {
+
+        // we take the article properties
+        let articleArgs = req.body;
+
+        // Sega zapochvame da pravim proverki:
+
+        let errorMsg = '';
+
+        //req.isAuthenticated() comes from the passport module and
+        // it checks if there is currently a logged in user.
+        if(!req.isAuthenticated())
+        {
+            errorMsg = 'You should be logged in to make articles!'
+        }else if(!articleArgs.title)
+        {
+            // ako articleArgs.title e false t.e. ili e empty, undefined ili null
+            errorMsg = 'Invalid title!'
+        }else if(!articleArgs.content)
+        {
+            // ako articleArgs.content e false t.e. ili e empty, undefined ili null
+            errorMsg = 'Invalid content!';
+        }
+
+        if(errorMsg) {
+            // Ako ima greshka q podavame na viewto i to shte q pokaje
+            res.render('article/create', {error:errorMsg});
+            return;
+        }
+
+        //1.Assign the author’s id to the article object
+        articleArgs.author = req.user.id;
+
+        //2.Save the article to the database & o	Attach an “id”
+        // to the article, which we will add to the author’s articles later
+        Article.create(articleArgs).then(article => {
+           req.user.articles.push(article.id);
+           req.user.save(err => {
+
+                if(err)
+                {
+                    res.redirect('/', {error: err.message})
+                }else
+                {
+                    // Ako nqma prosto redirektvame kum glavnata stranica
+                    res.redirect('/')
+                }
+
+            });
+        })
+    },
+};
+
+
+//THEN WE NEED TO ADD THE PATH TO THE ROUTE.JS FAIL
+
+
+//// {{#if VARIABLE}} ... {{/if}}     i  {{#unless VARIABLE}} ... {{/unless}}
+//// TEZI SA KATO IF I ELSE ZA NASHIQ VIEWENGINE V HTML-a
+//// Ako promenlivata e vqrna shte se izpulni if-a ako ne e shte se izpulni els-a
+
+
+//// But how does the view know about the current user? Look at “express.js” – there
+//// is a middleware that binds user in way that allows to be visible to the view
+
+app.use((req, res, next) => {
+        if(req.user){
+            res.locals.user = req.user;
+        }
+
+        next();
+    });
+
+
+
+
+
+
+
+// AFTER WE FINISH WITH THE GET AND POST CREATE ARTICLE ACTIONS WE
+// HAVE WILL LIST ALL THE ARTICLES IN THE MAIN VIEW home/index.hbs
+
+We copi the html code we were given  we use {{#each articles}} ... {{/each}}
+which works as a foreach loop
+
+We go through every article which was passed to us. For every single one we will display:
+•its title (using 'this' means that we are iterating over the current article)
+•its content
+•its author
+
+
+
+
+// Create Article Details page:
+
+1.Create new view called details.hbs in the viesw/article folder
+	Copy the code from the file
+
+2.Go to routes.js and
+// it's logical to tell the server which article we want to see. This information will be sent through the URL. In the URL, we will pass the article’s “id”, We already did that in index.hbs file
+
+ // We add the get metod to the details action in our article details page
+    // And we secify that we need a parameter ID at the end of our link!
+    app.get('/article/details/:id', articleController.details);
+
+
+// HOW TO GET PARAMETERS FROM OUR URL: 
+So, if we want to get a parameter with the name “id”, we will write req.params.id. This is how we get parameters from our URL (note: req.params is different from req.body).
+
+3. Create the details action in the article controller
+ details: (req, res) => {
+
+        let articleId = req.params.id;
+
+        Article.findById(articleId).populate('author').then(article => {
+            res.render('article/details', article);
+        });
+    },
+
+// Now when we click the button read more we will see this details page.
+
+
+
+
+
+
+// CREATE PROFILE PAGE FOR EVERY USER
+1.Create the view
+
+2.Create the route with the user Id
+
+3.Create the action in the user controller
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
