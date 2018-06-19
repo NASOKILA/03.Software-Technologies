@@ -1,0 +1,10 @@
+
+THE EXERCICE IS ON THE CALCULATOR FROM TH PREVIOUS LESSION
+
+ako poluchim greshka    cannot find file  i imame cherveno xche gore kudeto e play butona 
+znachi nqmame interpretator i ne sme si instalirali pravilno node.js, OPRAVQ SE kato si napravim nov interpretator : vlizame v settings/ languages and frameworks / Node.js and NPM i dobavqme putq do nodejs.exe faila.
+
+Dobre e da otidem na settings/ languages and frameworks / Node.js and NPM i da kliknem na Enable za Node.js core  shte ni nameri vichki bibliotki koito proekta ni izpolzva i shte ni pomaga. Primerno ako imame greshka nqkude shte q podchertava v cherveno
+
+
+.sort() v JS raboti kato CompareTo() v C#
