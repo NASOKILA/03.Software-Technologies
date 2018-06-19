@@ -1,0 +1,19 @@
+delete folder vs(is for users) and packages(contains nutget packages).
+Visual studio downloads the nutget packages automaticalli
+
+V papkata na nasheto prilojenie imame papkite:
+App_Data koqto sudurja bazata
+App_Start koqto startira bazata
+bin i obj sa papki koito sudurjad kompiliranite do sega klasove
+Content sudurja CSS-ove
+Scripts sudurja JAVASCRIPTI
+DRUGITE PAPKI GI ZNAEM
+
+
+TRIEM PAPKITE App_Data, bin i obj 
+
+
+
+
+
+
