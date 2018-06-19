@@ -1,0 +1,191 @@
+
+
+
+ORM - Object Relational Mapping  Tova e suotvetstvie mejdu tablici i klasove
+t.e. OOP-to sus BAZATA. 
+HUBAVOTO E CHE MOJEM DA POLZVAME DANNITE OT BAZATA VSE EDNO SA NI V PAMETTA !!!
+MNOGO SE POLZVA ORM !!!!!!!!!
+
+
+CRUD operations - CREATE READ UPDATE DELETE operacii
+TOVA E MINIMALNOTO KOETO TRQBVA DA MOJEM DA PRAVIM, CRUD OPERACII VURHU BAZATA CHREZ WEB ZA DA MOJEM DA POCHNE MRABOTA KATO STAJANTI.
+CRUD GENERIRA SQL COMANDI KOITO SE IZPULNQVAT V BAZATA.
+
+vajnoooooooooo !!!!!!
+Entity Framework (EF) e moderen ORM Framework za C#
+KOITO IMA EDIN KLAS DbContext CHREZ KOITO SI PRAVIM CRUD OPERACIITE.
+Nasledqvame go i mojem direktno tam da si pravim bazata S KLASOVE.
+S DVE DUMI TOV EF E BIBLIOTEKATA ZA DOSTUP DO BAZATA CHREZ ORM
+(EF) INSTALIRA SE OT NUTGET PAKETITE VUV VisualStudio ZASHTOTO TQ NE E CHAST OT .NET FRAMEWORK:
+Pravim si proekt davame dqsno kopche na nego kato e gotov i natiskame  
+Manage Nutget Packages, Browse, pishem Entity Framework, davame install I GOTOVO.
+Kato dadem n References go  vijdame .
+To e kum 10 megabaita
+
+
+TUK ANOTACIITE SE NARICHAT ATRIBUTI.
+ZA RAZLICHNI ANOTACII VKLUCHVAME RAZLICHNI NESHTA KATO :
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+
+MODELI:
+KATO MODELI, Entity Framework POLZVA NORMALNI C# KLSOVE SUS ATRIBUTI,
+Narichat se POCO klasove !!!
+Modelite i v Java, C# i drugi ezici se narichat Entity Klasove koito zapisvat neshto ot realniq svqt v bazata kato kniga, akaunt, Artikul i t.n. 
+
+
+vajno !!!!!! :
+Imame neshto novo v C# OPERATORA ?. PRIMER:
+article.Author?.FullName KOETO OZNACHAVA AKO AVTORA NE E NULL NI VURNI IMETO MU INACHE VURNI 0 !!!!!!!!!!!!!!!!!!!	
+
+
+
+
+STARTITRAME KONZOLNO PRILOJENIE VUV VISUAL STUDIO KOITO E .NET FRAMEWORK PROEKT
+
+
+NE ZABRAVQI DA IZPOLZVASH prop SHORTCUT-a KATO PRAVISH MODELI !!!!!!!!!!!!!!!!!
+ 
+
+
+NA IZPITA NQMA DA IMA VRUZKI MEJDU TABLICI !
+
+
+VAJNOOOOO !!!!!!!!!!!!!!
+ZADULJITELNO PRI RELACII I DR SE PRAVI Class KOITO DA NASLEDQVA DbContext !!!!
+Zatov trqbva da si vlkuchim :    using System.Data.Entity;
+
+class ArticlesDbContext : DbContext
+{
+    // tuk si pravim tablicite Articles i Users
+    public DbSet<Article> Articles { get; set; }
+    public DbSet<User> Users { get; set; }
+
+}
+
+// DORI I DA NQMAME BAZA KATO RUNNEM PROEKTA (EF) AVTOMATICHNO SHTE NI SUZDADE TAKA VA I SHTE Q SEIVNE KUDETO MU E NAI UDOBNO.
+POSLE OT MAIN MOJEM DA RABOTIM S NEQ .
+
+
+
+KAK DA SI OTVORIM NARAVENATA BAZA: 
+OTVARQME SI Microsoft SQL Server Manager i klikvame na connect, DAVAME KATO TIP DatabaseEngine i Kato IME KOPIRAME SLEDNIQ STRING OT SLAIDOVETE: 
+(localdb)\MSSQLLocalDB
+VIJDAME SI BAZATA KATO Q OTVORIM.
+
+
+TIPA Data I DataTime V SQL NE SA EDNI I SUSHTI !!!!! IMA MALKA RAZLIKA.
+
+
+
+KAK DA TRIEM BAZA:
+Dqsno kopche na delete, slektvme Close Existing Connections ZA DA SE IZTRIE ABSOLUTNO VSICHKO !!!!!
+	
+
+TOVA E VSICHKO KOETO TRQBVA DA ZNAEM ZA ENTITY FRAMEWORK !!!!!!!!!!!!!!!!!!!!!!!!!!
+1. Dobavqme go s nutget
+2. Pravim si klasovete
+3. Pravim si DbContext
+4. Rabotim v main klasa vse edno rabotim s pametta
+5. Otvarqme SQL Manager za da sledim kakvo stava
+
+
+
+
+
+
+
+ASP.NEW MVC:
+Model View Controller 
+Shte pishem kontrolleri, viewta, modeli i dr.
+Shte polzvame Razor Kato View Engine i Entity Framework za dostup do dannite ot bazata.
+VSICHKI TEZI VURVAT RUKA ZA RUKA.
+
+Ima dva vida .Net: 
+.NEt Framework Koqto e po stara i raboti samo za windows.
+.NET CORE Koqto e po novata i raboti i za drugi platformi NO E PO SAKATA.
+
+
+MNOGOOOOOOOOOOO VAJNOOOOOOOOOOOOOOOOOOOOOOOOOOOO:!!!!!!!!!!!!!!!!!!!!!!!!!
+Tipove proekti:
+1.WebForms proekt e PO STARATA TEHNOLOGIQ.
+2.MVC proekt E PO AKTUALATA TEHNOLOGIQ
+3.Web API proekt E WEBSERVICE T.E. SAMO ZA ZAPAZVANE NA DANNI, TAM NQMA VIEWTA
+4.Single Page Applivation proekt E mnogo burz proekt koito sam ni pravi backEnd sistema i frontEnd sistema mojebi sus AngularJS.
+
+
+
+
+PRAVIM SI NOV MVC PROEKT CHREZ VISUAL STUDIO.
+Kato go otvorim papkite ni se namirqt ot dqsno a ne ot lqvo kakto v JetBrains Produktite.
+
+
+
+V Papka App_Data shte sedi bazata.
+V App_Start shte ima konfiguraciq na rutove
+v kontent sedat css failovete 
+V shared se sudurjat obshtite layouti
+Failut web.config  konfigurira failove sburzani s web i bazata
+favicon.ico E IKONATA KOQTO E V GORNIQT LQV UGUL
+drugite gi znaem !!!!!!!!!
+
+
+za vseki kontroler si ima aktioni, zavseki aktion si ima view
+za vseki kontroler si ima po edna papka koqto sudurja view za vseki kontroler
+
+V razor polzvame @ za vkluchvane na C# I E VAJNO CHE ESKEIPVA
+
+
+(EF) RABOTI S ABSOLUTNO NORMALNI OOP KLASOVE V C#
+
+VAJNOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!! :
+ZA SUZDAVANE NA BZA MOJE DA SI NAPRAVIM PROSTO EDIN NOV KLAS OT TIP:
+ADO.NET Entity Data Model, KRUSHTAVAME GO NQKUKSI I POLE NI PITA KAKVO ISKAME DA IMA V NASHIQ MODEL I TRQBVA DA SELEKTIRAME Empty Code first model
+
+VAJNO!!!! :
+DBSet<T> raboti kakto List<T> V C# SMOCHE ZA OBEKTI V BAZATA.
+
+VAJNOOOOO ! :
+ZA DA MOJEM DA POLZVAME MODELITE V DADEN KONTROLLER TRQBVA DA IMPORTNEM:
+using TODOList.Models;
+
+VAJNO !!!! :
+KAK DA Si NAPRAVIM FORMA VUV VIEWTO SUS RAZOR:
+@using(Html.beginForm())
+{
+...
+}
+
+
+MNOOOOOOOOGOOOO VAJNOOOOOOOOOOOOO NESHTOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!
+ako sme Runnali pROeTA i toi ni e suzdal veche bazata znachi mojem da otidem vuv faila Web.config I NAKRAQ DA VIDIM KUDE SE NAMIRA I KAKVO IMA V NEQ !!!!!!!!
+IMA GO I IMETO NA SURVERA KOETO NI E NUJNO DA NAPISHEM V SQL MANAGER ZA DA SE SVURJEM KOETO SEDI SLED DATA SOURCE V CONNECTION STRING ="..."  !!!!!!!!!!
+
+
+NA IZPITA SHTE TRQBVA DA NAPRAVIM KLAS I DbContext ZA BAZATA 
+
+
+MNOOOOOOOOGOOOO VAJNOOOOOOOOOOOOO NESHTOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!
+AKO IMAME GRESHKA NQKUDE OSOBENO POKRAI BAZATA NE ZABRAVQI DA REBUILDNESH PROEKTA ZAHTOTO IMA RAZLIKA PURVONACHALNO OT KOMPILIRAN KOD I NE KOMPILIRAN ZATOVA DAVASH  NA BUILD OT MENIUTO I REBUILD SOLUTION.
+
+MNOGO VAJNO ZAPOMNI GO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+KATO DADEM DQSNOTO NA PAPKATA KONTROLLERS I DADEM NA : New Scaffolded Item TO NI GENERIRA KOD AVTOMATICHNO ZADAVAME MU MODELA I KOI KLAS DA E DATA CONTEXT.
+TOVA NI GENERIRA KONTROLLER KOITO LISTVA VSICHKI PRODUKTI NO NIE MOJEM DA SI PROMENQME KAKVOTO SI POISKAME V NEGO !!!!!!!!!!!!!!!!
+
+
+
+SUMMARY:
+ASP.NET e platforma za web programirane
+V neq imame viewta
+Imame modeli 
+Imame kontroleri koito si imat ekshuni i renderirt viewto, TOVA KOETO GO PODAVAT NA VIEWTO VLIZA V @model I MOJEM DA GO POLZVAME VUV HTML-a
+
+Imame integraciq sus (EF)Entity Framework koqto ni DAVA TEZI CRUD OPERACII 
+Create, Edit,Update i Delete
+
+
+
+WFA - Oznachava Windows Form Application MNOGO RQDKO SE POLZVAT VECHE I NQMA DA GI UCHIM MNOGO.
+
+
