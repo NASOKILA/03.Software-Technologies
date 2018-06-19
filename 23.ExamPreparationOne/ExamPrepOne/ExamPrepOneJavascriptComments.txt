@@ -1,0 +1,275 @@
+
+
+!!!!!. Sloji si papkite v C: za da nqmat dulug path inache shte ni dava greshki
+
+!!!!!. Smeni im imenata takache da nqma " " v tqh inache moje da dava greshki
+
+
+
+1. Puskame si MongoDB SERVERA kato runnem faila mongod.exe KOITO E V 
+C:\Program Files\MongoDB\Server\3.4\bin    CHAKAME GO DA ZAREDI DOKATO NE IZPISHE 
+N POSLEDNIQ RED waiting on connections on port 27017
+
+MNOGO VAJNO !!!!!: NE SELEKTIRAI NISHTO V KONZOLNOTO PROZORCHE INACHE SHTE SPRE VRUZKATA S BAZATA, NAI DOBRE E DA NATISNEM ESC BEZ DA ZATVARQME PROZORCHETO
+
+2. Otvarqme si Robomongo i se vruzvame kum 27017
+
+3. Otvarqme si konzola tam kudeto ni e JS proekta, MOJE DA E GITBASH 
+
+4. Pishem "npm install" za da ni instalira vsichki dependencita koito sa ni nujni
+
+5. Otvarqme webStorm i otvarqme si JS skeleta I AKO IMAME PAPKA node_modules ZNCHI VSICHKO E OK
+
+6. NATISKAME SHIFT dva puti, PISHEM todo I VIJDAME KADE TRQBVA DA RABOTIM !!!
+
+7.Predi da zapochnem rabota si downloadvame edna biblioteka: Otivame na settings/languages and frameworks/ JavaScript/Librarise/Download/  PISHEM mongoose I INSTALIRAME PURVOTO
+Shte izpishe 'mongoose-DefinitellyTyped' TAZI BIBLIOTEKA E ZA AUTOCOMPETE, ZA DA NI E PO LESNO.
+
+7.1 Checkvame go, SUSHTO TAKA checkvame i Javascript Scheleton/node_modules ZA DA IMAME AUTOCOMPLETE ZA VSICHKITE MODULI.
+
+8. Trqbva da si vkluchim node.js and NPM: Otivame na settings/languages and frameworks/ JavaScript/ Node.js and NPM i KLIKVAME NA 'Enabled'. TOVA VKLUCHVA  Node.js Core Library KOETO NI POZVOLQVA DA PRAVIM VSICHKO SUS Node.js KATO DA SI UPDATVAME PAKETITE.
+
+9. Zapochvame rabota puevo v modela:
+//1. requirvame si mongooose
+const mongoose = require('mongoose');
+
+
+//2. pravim si shemata na modela:
+let taskSchema = mongoose.Schema({
+
+    // slagame si propertitata
+    title:{type: 'string', required:'true'},
+    comments:{type: 'string', required: 'true'},
+});
+
+//3. trqbva da previrnem shemata v model: DAVAME MU NQKAKVO IME I NU PODAVAME NASHATA SHEMA
+//VAJNO !!! POSLEDNOTO 'task' E ZA IMETO NA MODELA KOITO SHTE SUZDADEM V ROBOMONGO, TRQBVA DA E S MALKI BUKVI INACHE STHE DADE GRESHKA !!!
+let Task = mongoose.model('Task', taskSchema, 'task');
+
+//4. exportvame modela ZA DA MOJEM DA GO POLZVAME IZVUN TOZI FAIL
+mongoose.exports = Task;
+
+
+
+// MODELA E GOTOV
+
+
+
+
+VAJNOOO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+9.1 OTIVAME V ROBOMONGO I SI PRAVIM BAZATA AKO Q NQMA:
+Dqsno na MyConnections, Create Database , NO TRQBVA DA DADEM TOCHNOTO IME.
+IMETO GO VZIMAME OT SKELETA, KATO OTIDEM NA config.js NA connectionString VIJDAME:
+connectionString: 'mongodb://localhost:27017/teistermask'
+
+VZIMAME POSLEDNOTO KOETO E teistermask I TOVA NI E IMETO NA BAZATA !!!!!!!!!!!!!
+
+
+
+VAJNOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!
+9.2 Insertvame v bazata taskove chrez robomongo : DAVAME DQSNO KOPCHE NA KOLEKCIQTA I KLIKVAME Insert Document.
+
+VAJNOOOOOO !!!!!!!!!!!!!!
+Dobavqme si i modela 'task' VAJNO E DA BUDE S MALKA BUKVA INACHE NI DAVA GRESHKATA:
+
+
+I PISHEM PRIMERNO:
+ title: "TaskOne",
+ status: "Open"
+I KLIKVAME Save BUTONA
+
+
+9.3 Davame F5 koeto e refresh na bazata za da vidim dali vsicho e ok !
+
+
+10. Zapochvame rabota v kontrollera, imame poveche todo-ta zashtoto imame get i set metodi
+
+
+VAJNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!
+10.1 Pravim si konfiguraciq za da si pusnem proekta: 
+Davame na EditConfigurations, Zelenoto Plusche, Dobavqme Node.js, Davame mu ime,
+POD NODE INTERRETER posochvame kude nie node.exe faila
+POD WORKING DIRECTORY posochvame papkata na nashiq proekt
+POD JAVASCRIPT FILE pishem bin/www 
+
+!!!!!
+AKO PORTA NI E ZAET I SE NALOJI DA SMENIM PORTA: OTVORQME SI FAILA www SUS NOTEPAD SI PISHE NA KOI PORT VURVI PROEKTA, PROSTO GO PROMENQME !!!!!!!!!!!!!!!!
+
+VAJNOOOOOOOOOOOOO   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    :
+10.2 PUSKAME SI PROETA SUS PLAY BUTONCHE I AKO IZPISHE MongoDB readi! ZNACHI VSICHKO E OK, MOJEM DA GO ZAPALIM I OT KONZOLATA KATO NAPISHEM 'npm start' !!!!!!!!!
+DAJE AKO IMAME GRESHKA NI Q PISHE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SPIRA SE SUS CTRL + C !!!!!!!!!!!!!!!!!!
+
+
+11. pravim si index metoda:
+index: (req, res) => {
+
+        //TODO: Implement me...
+
+    	// Trqbva da vzemem vsichki taskove ot bazata i da gi podadem na inde viewto
+		    	Task.find().then(tasks => {
+            res.render('task/index', {'tasks': tasks});
+		});
+
+    },
+
+
+12. PRAVIM SI CreateGet metoda:
+createGet: (req, res) => {
+
+        //TODO: Implement me...
+		// Tuk prosto vrushtame create viewto
+		return res.render('task/create');
+	},
+
+
+13.Pravim si createPost metoda:
+
+createPost: (req, res) => {
+        //TODO: Implement me...
+
+
+		// KATO DEBUGVAME VIJDAME KAKVO POLUCHAVAME OT FORMATA I CHE MOJEM DA DA GO VZEMEM OT req.body
+		// VZIMAME SI TASKA
+		let task = req.body;
+
+		if(task.title === "" || task.comments === "")
+		{
+			//Ako title ili comments sa prazni, vrushtame usera kum create stranivcata
+			res.redirect('/create');
+            		return;
+        	}
+
+		//Ako taska nqma prazni poleta
+		// ZAPISVAME GO V BAZATA:
+
+		Task.create(task).then(task => {
+			res.redirect('/');
+		})
+
+
+
+	},
+
+
+
+
+14. POGLEJDAME V ROBOMONGO DA VIDIM DALI IMAME SUZDADENA NOVA BAZA I DALI V NEQ IMA NOV TASK
+
+15. Pravim is delete GET METODA:
+
+	deleteGet: (req, res) => {
+
+        //TODO: Implement me...
+
+		//1. VZIMAME SI ID-to OT URL-a
+        // KATO DEBUGVAME VIJDAME CHE ID-to SE SUDURJA V req.params
+        let id = req.params.id;
+
+		//2. Namirame taska s tova id
+		Task.findById(id).then( task => {
+
+			//Ako nqma takuv task se vrushtame kum index viewto
+			if(!task)
+			{
+                res.redirect('/');
+                return;
+			}
+
+			// ako ima takuv task go podavame na delete viewto
+			res.render('task/delete',task);
+
+		});
+
+
+	},
+
+
+
+
+
+16. PRAVIM SI Delete post metoda:
+deletePost: (req, res) => {
+        
+    	//TODO: Implement me...
+
+		// Vzimam si IDto
+		let id = req.params.id;
+
+		Task.findById(id).then(task => {
+
+			// AKO NE SUSHTESTVUVA TAKUV TASK SE VRUSHTAME KUM INDEX VIEWTO
+			if(!task)
+			{
+				res.redirect('/');
+				return;
+			}
+			
+            // AKO SUSHTESTVUVA TAKUV TASK GO TRIEM :
+            Task.remove(task).then(task => {
+				res.redirect('/');
+			});
+			
+        });
+
+	}
+
+
+16.1 AKO IMAME EDIT METODI SI GI PRAVIM I TEH:
+
+
+
+
+17. Proverqvame v RoboMongo dali taskovete izchezvat !!!
+
+
+GOTOVO E !!!!!!!
+
+//VAJNO !!! : AKO DADEN ROUT NQMA VIEW, NQMA DA NI POKAJE STRANICATA I NQMA DA DADE GRESHKA A PROSTO SHTE VURTI ZAVINAGI BEZ DA MOJE DA ZAREDI ZASHTOTO TRQBVA DA MU SE PODADE VIEW.
+
+//VAJNO !!! : VLIZAI SI VUV VIEWTATA ZA DA VIDISH KAKVO OCHAKVAT ZA DA ZNAESH KAKVO DA IM PODADESH ILI V Routes.js FAILA !!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+
+
+
+!!!!!. Sloji si papkite v C: za da nqmat dulug path inache shte ni dava greshki
+
+!!!!!. Smeni im imenata takache da nqma " " v tqh inache moje da dava greshki
+
+
+
+1. Read the lab and download The skeleton.
+
+
+2. Open xampp and start mysql server which runs on port 3306
+
+
+3. Open HeidySQL and start a session on 3306
+
+
+4. Open terminal or powershell or gir bash shell window in the folder where the skeleton stays.
+
+
+5. Type:   php composer.phar install   Wait until it's done and type:   php bin/console doctrine:database:create --if-not-exists
+MOJEM DA SKIPNEM STUPKA 4 i 5 I PROSTO DA RUNNEM init.db.bat FAILA
+This will create the database.
+
+
+6. Import the project in intellyJ or phpStorm and wait until it's done loading
+
+
+6.1 IMPORTANT !!! WE CLICK SHIFT 2 Times AND TYPE 'todo' TO SEE IN WHICH FILES WE NEED TO WORK !!! V NASHIQ SLUCHAI TRQBVA DA RABOTIM V Controller,Entity i Form TO NI GO PISHE OT DOLO!
+
+
+7. Start making the model in the DB: on the console type:  ALT + F12 is the console opening
+php bin/console doctrine:generate:entity
+// SAMO KATO NAPISHEM doctrine I DADEN ENTER NI POKAZVA KOLKO MNOGO NESHTA MOJEM DA NAPRAVIM SUS doctrine:
+
+
+7.1 Write the name ot the entity but you have to use the AppBundle: Example AppBundle:Task
+
+
+7.2 Choose the format you want, WE JUST PRESS ENTER IT CHOOSES Anotations BY DEFAULT
+
+
+7.3 We Add the fields for our model : NOTE THAT IF WE JUST PRESS ENTEER IT WILL STOP ADDING FIELDS, THE ID IS GENERATED AUTOMATICALLY SO WE SKIP IT  
+We add 'title'(in our case) and press enter, then we specify the type: OR JUST PRESS ENTER IF IT IS ALREADY SPECIFIED
+
+
+7.4 Fill in the information for the properties you want the model to have
+GLEDAI OT LABA !!!!      VIJDAME CHE V PAPKATA Entity IMAME MODEL Task SUS VSICHKO VECHE GENERIRANO VUTRE.
+
+
+VAJNOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!!
+7.5 Updatevame bazata za da mojem da vidim tova koeto sme generirali: PISHEM V TERMINALA: php bin/console doctrine:schema:update --force
+    Sega v HeidySQL mojem da vidim kakvo sme napravili !!!
+
+
+8. Create the form in Form folder, TaskType File WATCH FROM OLDER PROJECTS !!! ILI IZTRIVAME FAILA I SI PRAVIM NOV CHREZ TERMINALA !
+We type:    php bin/console doctrine:generate:form AppBundle:Task                 NAKRAZ KAZVAME ZA KOI MODEL NI E TAZI FORMA !!!!!
+
+
+8.1 TRQBVA DA IZTRIEM NESHTO VUV FAILA TaskType I TO E METODA getBlockPrefix() ZASHTOTO SHTE NI SCHUPI VSICHKO !!!
+
+
+8.2 Slagame tip Text:Type na title i content v TaskType Klasa:  Trqbva da izglejda teka: 
+        $builder
+            ->add('title',  TextType::class)
+            ->add('content', TextType::class);
+
+
+VAJNO: IMPORTVAME SI use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+
+8.3 SEGA SLED KATO SME SVURSHILI S MODELA: UPDATEVAME SI BAZATA SUS: 
+php bin/console doctrine:schema:update 
+Dobavqme si taskove ot HeidySQL,      S CTRL + INSERT 
+KOPIRAME I PECHATAME EDNOVREMENNO V HeidySQL ZA PO BURZO !
+
+
+9. ZAPOCHVAME RABOTATA V KONTROLERA
+
+
+9.1 Runvame si proekta sus zaleniq play buton AKO NE MOJEM: OTVARQME DEBUG CONFIGURACIITE I SI PRAVIM SI NOV SCRIPT:
+    Davame mu ime, pod Arguments pishem server:run, pod File: PUTQ DO bin/console FAILA OT PROEKTA NI.
+    Ako ni dava problem s interpretatora trqbva da si g opravim ot butona sus ... koito se namira ot dqsno na poleto CLI Interpreter !!!
+
+
+9.2 Ako vsichko vurvi dobre SHTE NI IZPISHE NA KOI PORT E PRILOJENIETO, Vlizame si na hosta koito ni e izpisan na terminala
+    NORMALNO E DA NI DAVA CHERVEN EKRAN V NACHALOTO ZASHTOTO NE VRUSHTAME NIKAKVO VIEW.
+
+
+9.3 Pravim si index metoda koito listva vsichki taskove:
+    Vzimame si repositorito, ot nego durpame vsichki taskove i gi podaveme na viewto kato masiv ot taskove koeto shte gi renderira:
+	 
+         $taskRepository = $this->getDoctrine()->getRepository(Task::class);
+         $tasks = $taskRepository->findAll();
+         return $this->render("task/index.html.twig", ['tasks' => $tasks]);
+
+
+9.4 Pravim si Kontrollera:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BAZATA V JAVA I V PHP E EDNA I SUSHTA
+TEJKITE FRAMEWOCI SA TEJKI ZASHTTO IMA MNOG KOD NO MOJEM DA PRAVIM MNOGO NESHTA !
+
+
+
+
+
+

@@ -1,0 +1,326 @@
+
+
+
+!!!!!. Sloji si papkite v C: za da nqmat dulug path inache shte ni dava greshki
+
+!!!!!. Smeni im imenata takache da nqma " " v tqh inache moje da dava greshki
+
+
+0.Puskame si xampp na nego vkluchvame MySQL servera koito vurvi na 3306 i si otvarqme heidySQL
+za da si gledame bazata.
+	
+1. Importvame si proekta v IntelliJ kato selektirame MAVEN
+VAJNO E DA MU DADEM SUSHTOTO IME ZASHTOTO SHTE NI DADE GREHKA !!!!!!!!!!
+
+2. Chrez Shift dva puti vijdame kude trqbva da rabotim
+
+3. Zapochvame ot Entity modela ZNAEM CHE TRQBVA DA E OT TIP string I DA E required
+
+    // ZA ID-to NIKOGA NE IZPOLZVAI int, VINAGI Integer ZASHTOTO TAKA PRAVIM REFERENCIQ
+
+@Entity
+@Table(name = "tasks")
+public class Task {
+	//TODO:Implement me...
+
+    //Tuk trqbva da si slojim i id
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String title;
+
+    private String content;
+
+    // CHREZ DQSNO KOPCHE, generate, avtomatichno generirame get, set i konstruktor
+
+    // TRQBVA DA NAPRAVIM VSICHKI GET METODI REQUIRED, OBCHE TUK E @Column(nullable = true) VMESTO Required !!!
+
+
+    // pravim si i prazen konstruktor za da mojem da dotupvame instanciq na klasa
+    public Task()
+    {
+    }
+
+    public Task(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    @Column(nullable = true)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(nullable = true)
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Column(nullable = true)
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+}
+
+
+
+
+4. Pravim si binding modela:
+Toi e sushtiq kato Task modela samoche s razlichno ime i bez anotacii
+TOVA E KLAS KOITO PROSTO SHTE PULNIM S NESHTA OT USERA I SHTE PRASHTAME KUM VIEWTO !!!
+
+VAJNO !!!! : Binding modela e neshto koeto polzvame kogato nqkoi ni e pratil nqkakvi danni i nie iskame da gi obrabotim
+    
+
+public class TaskBindingModel {
+
+	//TODO:Implement me...
+
+    // TOZI MODEL E SUSHTIQ KATO TASK SAMOCHE E S RAZLICHNO IME I NQMA ANOTACII
+    // SHTE GO POLZVAME ZA DA GO PULNIM S DANNI OT USERA I DA PRASHTAME V MODELA
+
+
+    // NQMA NUJDA OT ID
+
+    private String title;
+    private String content;
+
+    public TaskBindingModel() {
+    }
+
+    public TaskBindingModel(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+}
+
+
+
+5. PUSKAME SI XAMPP MySQL SERVRA I OTVARQME HEIDYSQL, AKO NQMAME BAZA SHTE NI SUZDADE TAKAVA PRI PUSKANETO NA PROEKTAPROEKTA OT PLAY BUTONA, VURVI NA PORT 3306.
+
+VAJNO !!!!
+5.1 PRI ZAREJDANETO NA PREPOSLEDNIQ RED V KONZOLATA NI POKAZVA NA KOI PORT NI E PROEKTA, PO PRINCIP E NA 8080
+Ot application.properties vijdame kak ni se kazva bazata POD spring.datasource.url i na koi port sme !
+
+
+5.2 VAJNO!!!!! PREDI DA SI PUSNEM PROEKTA TRQBVA DA GO BUILDNEM INACHE SHTE NI DADE GRESHKA !!!!!!!!!!!!!!!
+
+
+5.3 DOSTUPVAME PROEKTA NA localhost:8080
+
+5.4 VAJNOOO ! NQMA DA NI DADE KARTINA DOKATO NE MU PODADEM NQKAKVO VIEW 
+
+6. Zapochvame rabotata v kontrollera
+
+
+6.1 Pravim si index metoda
+
+
+    @GetMapping("/")
+    public String index(Model model) {
+        //TODO:Implement me...
+
+        // Tuk shte listnem vsichki taskove
+
+        //1. Vzimae gi ot bazata kato polzvame repositorito
+        // Za modela Task si imame veche napraveno repository
+        // MODELITE I REPOSITORITATA V JAVA I C# SA RAZDELENI
+
+        List<Task> tasks = taskRepository.findAll();
+
+        // podavame gi v modela
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("view", "task/index");
+
+        return "base-layout";
+    }
+
+
+6.2 Pravim si create GET metoda:                   SAM !!!!!!!!!!!!!!!!!!!!!!
+
+    @GetMapping("/create")
+    public String create(Model model) {
+
+        //TODO:Implement me...
+        // TUK ROSTO TRQBVA DA PODADEM VIEW-to I DA VURNEM "base-layout" ta
+        
+        model.addAttribute("view", "task/create");;
+        return "base-layout";
+    }
+
+
+6.3  Pravim si create POST metoda:                    SAM !!!!!!!!!!!!!!!!!!!!!!
+
+ @PostMapping("/create")
+    public String createProcess(Model model, TaskBindingModel taskBindingModel) {
+        //TODO:Implement me...
+
+        //1. VZIMAME SI PODEDENOTO OT USERA I GO ZAPISVAME V TaskBindingModel MODEL
+        TaskBindingModel newTask = taskBindingModel;
+
+
+        //2. PROVERQVAME DALI title I comments SA PRAZNI
+        if(newTask.getComments().equals("") || newTask.getTitle().equals(""))
+        {
+            //AKO EDNO OT TQH E PRAZNO, REDIRECTVAME KUM INDEX STRANICATA
+            return "redirect:/";
+        }
+
+
+        //3. PRAVIM SI NOV TASK I GO PULNIM S TOVA KOETO E V TaskBindingModel-a
+        Task task = new Task();
+        task.setTitle(newTask.getTitle());
+        task.setComments(newTask.getComments());
+
+
+        //4. I GO DOBAVQME V BAZATA I ZAPISVAME
+        taskRepository.save(task);
+        taskRepository.flush();
+
+        //5. VZIMAME SI PAK VSICHKI TASKOVE
+        List<Task> tasks = taskRepository.findAll();
+        model.addAttribute("tasks", tasks);
+
+        //6. I GI VRUSHTAME SE KUM INDEX VIEWTO
+        model.addAttribute("view", "task/index");
+        return "base-layout";
+    }
+
+
+
+7.PROVERI SI BAZATA V HEIDY SQL DA VIDISH DALI VSICHKO E OK
+
+
+8. Pravim si delete GET METODA:                SAM !!!!!!!!!!!!!!!!!!!!!!
+
+  @GetMapping("/delete/{id}")
+    public String delete(Model model, @PathVariable int id) {
+        //TODO:Implement me...
+
+        //1. VZIMAME SI TASKA CHREZ POLUCHENOTO ID
+        Task task = taskRepository.findOne(id);
+
+        //2. PROVERQVAME DALI E NULL, I AKO E REDIRECTVAME KUM INDEX VIEWTO
+        
+        // MNOGO VAJNO : TOVA SHTE RABOTI SAMO AKO POLZVAME '==' VMESTO .equals()
+        if(task == null)
+        {
+            return "redirect:/";
+        }
+
+        //3. PODAVAME SI TASKA KUM VIEWTO
+        model.addAttribute("task", task);
+
+        //4. PODAVAME SI VIEWTO KOETO ISKAME
+        model.addAttribute("view", "task/delete");
+        return "base-layout";
+    }
+
+
+
+9.Pravim si delete POST metoda:
+
+ 
+    @PostMapping("/delete/{id}")
+    public String deleteProcess(Model model, @PathVariable int id) {
+        //TODO:Implement me...
+
+        //1. Vzimame si taska ot bazata s poluchenoto ID
+        Task taskToDelete = taskRepository.findOne(id);
+
+        //1.1 PROVERQVAME DALI E VALIDNO
+        if(taskToDelete == null)
+        {
+            return "redirect:/";
+        }
+
+        //2. TRIEM GO OT BAZATA I SEIVAME
+        taskRepository.delete(taskToDelete);
+        taskRepository.flush();
+
+        
+        /*
+        // VZIMAME SI VSICHKI TASKOVE
+        List<Task> tasks = taskRepository.findAll();
+
+        //VRUSHTAME PODAVEME GI KUM VIEWTO
+        model.addAttribute("tasks", tasks);
+
+        // VRUSHTAME SE KUM INDEX VIEWTO, VECHE SME PODALI TSKOVETE
+        model.addAttribute("view", "task/index");
+        return "base-layout"
+        */
+        
+        // VMESTO DA PRAVIM VSICHKOTO GORE MOJEM PROSTO DA REDIREKTNEM KUM "/"
+        return "redirect:/";
+    }
+
+
+
+
+10.PROVERI SI BAZATA V HEIDY SQL DA VIDISH DALI VSICHKO E OK
+
+
+
+11. KOGATO DADEN PROEKT E GOTOV, IZKLUCHVAME  INTELLIJ, HeidySQL, XAMPP, RoboMongo, Terminala i ZAPOCHVAME SLEDVASHTIQ PROEKT!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

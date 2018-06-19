@@ -1,0 +1,191 @@
+
+!!!!!. Sloji si papkite v C: za da nqmat dulug path inache shte ni dava greshki
+
+!!!!!. Smeni im imenata takache da nqma " " v tqh inache moje da dava greshki
+
+
+
+
+1. Otivame v C# skeleta i si go otvarqme ot tam chrez visual studio
+
+1.1 Otivame na Package Manager Console i ni pita dali iskame da estornem vsichki paketi,
+KLIKVAME RESTORE.
+
+MNOOOOOOGOOO VAJNOOOOOOOOOOOOO ! ! !!!! ! !!! 
+1.2 Otivame na References i cukvame na malkata strelkichka ot lqvo, Otvarqt ni se mnogo neshta s WARNING ZNAK NA TQH, PROSTO POSOCHVAME NA EDNOTO OT TQH BEZ DA PRAVIM NISHTO I ZNACITE REQBVA DA IZCHEZNAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+2. Kato zaredi proekta natiskame CTRL + SHIFT + B za da ni instalira nutget paketite
+
+3. V solution explorera klikvame dqsnoto kopche na proekta(TOVA KOETO IMA ZELENO TOPCHE NA NEGO) i posle properties/web/ i ot dolo na projectUrl mu davame http://localhost:8000/ I KO GO NQMA.      CUKUME NA BUTONA Create Virtual Directory i sme gotovi
+
+4. Zapochvame ot modela
+polzvame shortkuta prop + TAB + TAB za da si napravim propertitata
+public class Task
+    {
+        // ako anotaciite ne sa vklucheni gi puskame sus ALT + ENTER !!!
+
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+
+        [Required]
+        public string Comments { get; set; }        
+    }
+
+
+5. RZGLEJDAME SI VIEWTATA DA VIDIM HUBAVO KOE VIEW KAKVO ISKA DA POLUCHI !
+
+
+6. Zapochvame rabota po kontrollera
+
+6.1 BUILVAME PROEKTA S CTRL + SHIFT + B I POSLE GO RUNVAME SUS CTRL + F5
+
+6.2 Dobavqme si nqkolko taska ot bazata, TQ SE SUZDAVA AVTOMATICHNO KATO RUNNEM PROEKTA
+OTVARQME Server Explorer ZA DA Q VIDIM.
+
+6.3 Pravim si Create GET metoda:
+	[HttpGet]
+        [Route("create")]
+        public ActionResult Create()
+		{
+			//Vrushtame samo view-to Create
+		    return View();
+		}
+
+
+6.4 Pravim si Create POST metoda:
+
+[HttpPost]
+		[Route("create")]
+        [ValidateAntiForgeryToken]
+		public ActionResult Create(Task task)
+		{
+            //1. PROVERQVAME DALI task-a E NEVALIDEN
+            if (task == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            //2. PROVERQVAME DALI NQKOE PROPERTI E PRAZNO
+            if (task.Comments == null || task.Title == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // AKO VSICHKO E NARED
+            //3. VZIMAME SI BAZATA
+            TodoListDbContext db = new TodoListDbContext();
+
+            //DOBAVQME SI TASKA I SEIVAME PROMENITE
+            db.Tasks.Add(task);
+            db.SaveChanges();
+
+		    return RedirectToAction("Index");
+        }
+
+
+
+6.5 Pravim si delete GET metoda:
+ 		public ActionResult Create(Task task)
+		{
+            //1. PROVERQVAME DALI task-a E NEVALIDEN
+            if (task == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            //2. PROVERQVAME DALI NQKOE PROPERTI E PRAZNO
+            if (task.Comments == null || task.Title == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // AKO VSICHKO E NARED
+            //3. VZIMAME SI BAZATA
+            TodoListDbContext db = new TodoListDbContext();
+
+            //DOBAVQME SI TASKA I SEIVAME PROMENITE
+            db.Tasks.Add(task);
+            db.SaveChanges();
+
+		    return RedirectToAction("Index");
+        }
+
+	[HttpGet]
+	[Route("delete/{id}")]
+        public ActionResult Delete(int id)
+		{
+            //vzimame si bazata
+            TodoListDbContext db = new TodoListDbContext();
+
+            // vzimame si taska ot bazata po id
+            Task task = db.Tasks.Find(id);
+
+	    if (task == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+
+            // podavame taska kum delete viewto
+            return View(task);
+        }
+
+
+6.6 Pravim si delete POST metoda:
+
+ 		[HttpPost]
+		[Route("delete/{id}")]
+        	[ValidateAntiForgeryToken]
+		public ActionResult DeleteConfirm(int id)
+		{
+            //vzimame si bazata
+            TodoListDbContext db = new TodoListDbContext();
+
+            // vzimame si taska ot bazata po id
+            Task task = db.Tasks.Find(id);
+
+            //Ako taska ne sushtestvuva vrushame se v index stranicata
+            if (task == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Triem taska ot bazata i zpazvame promenite
+            db.Tasks.Remove(task);
+            db.SaveChanges();
+
+            //redirektvame kum index metoda
+            return RedirectToAction("Index");
+        }
+
+
+
+GOTOVI SME !!!!!!!!!!!!!!!!!!!!!
+
+
+
+HINTS:
+1.VAJNOOO !!!!! : PO DOBRE DA ZA BAZATA IZPOLZVAME using(car db = new BlogDbCintext){ ... }
+ZASHTOT OAVTOMATICHNO SE ZATVARQ INACHE TRQBVA DA VIKAME db.Dispose() KOETO MOJE DA ZABRAVIM !!!
+
+2.VUV VISUAL STUDIO IMAME EVALUATE EXPRESSION KATO OTIDEM NA watch 1 DOLO V MENIUTO
+
+3. VAJNO E DA PROVERQVAME DALI POLUCHENITITE DANNI SA NULL ILI PRAZEN STRING ZASHTOTO MOJE DA NI GRUMNE PRILOJENIETO PRI NEVALIDNI ZQVKI.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
