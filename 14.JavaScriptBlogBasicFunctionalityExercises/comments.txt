@@ -1,0 +1,272 @@
+
+this   vinagi e tekushtiq obekt
+
+V PHP polzvahme relacionna baza danni MySQL a v JAVASCRIPT POLZVAHME NE RELACIONNA  kato MongoDB	
+RAZLIKATA E CHE V RELACIONNATA BAZA IMAME KOLKONKA OT LQVO KOQTO SUDURJA INDEXITE, TEZI INDEXI SA ZA PRAVENE NA RELACII. 
+Ne relacionnite bazi ne rabotqt taka.
+
+V JS nqma da polzvame klasove, za svurvane s bazata se pravqt shemi VMESTO KLASOVE.
+
+v req se sudurja bodito ako imame formichka i slagame danni.
+res (responsa) e tova koeto se vrushta na viewto. 
+
+Node.js ne zabiva i zatova e ednaot nai burzite tehnologii
+
+V modelite imame i salt koeto e kod polzvan ot funkciq za heshirane na parolata.
+
+Algoritumut za heshirne koito polzvame e SHA256
+
+V MOMENTA V KOITO SUZDADEM MODEL E DOBRE DA GO REQUIERNEM V DATABASE.JS ZASHTOTO SHTE ZABRAVIM.
+
+hbs  e  sukrateno na handlebars, Nqkoi failove zvurshvat na hbs
+
+DANNITE V MONGOTO SA OBEKTI S KEY I VALUE ZASHTOTO E PO LESNO ZA DOSTUP KUM TEZI DANNNI
+
+V JA PRAZNIQ STRING E FALSE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+passport e tova koeto e grigi za hehiraneto na parolata.
+
+PURVO E PRAVI MODELA POSLE VIWTO I NAKRAQ KONTROLERA   VAJNO!!!!!!!!!!!!!!!!!!
+
+
+1.purvo si vzimame mongoose:
+const mongoose = require('mongoose');
+
+2.Posle chrez mongoose si pravim shemata:
+let scheme = mongoose.scheme({  ...  });
+
+3.Trqbva da registrirame napravenata schema s mongooose ZA DA MOJEM DA Q EXPORTNEM Q SLAGAME V PROMENLIVA !!!:
+let nqkakvaShema = mongoose.model('KaktoSiIskame', schema);
+
+4.Trqbva da exportnem 
+
+module.exports = nqkakvaShema;
+
+
+SLED KAto SUZDADEM DADEN MODEL(ENTITY V PHP) TRQBVA DA KAJEM NA BAZAta CHE SUSHteStVUVA, TOVA STAVA KATO GO REQUIERNEM V database.js
+require('./../models/ImeNaShemata');
+
+
+VAJNO !!!!  VUV VSICHKI IDE-ta CTRL + D KOPIRA TEKUSHTIQ RED NA SLEDVASHTIQ,
+NE E NUJNO DA POLZVASH COPY PASTE
+
+
+AKO PROMENQME VECHE SUSHTESTVUVASHA SHEMA V DDEN MODEL TRQBVA ZADULJITELNO DA NAPRAVIM MIGRACIQ NA BAZATA, T.E. DA KAJEM NA BAZATA CHE DADEN MODEL E PROMENEN TOVA V NASHIQ SLUCHAI STAVA S KOMANDA KOQTO PISHEM V KONZOLATA NA ROBOMONGO, SLED TOVA PISHEM F5.
+
+
+
+
+SUZDAVANE NA KONTROLLER: tuk shte seivame Artikuli v bazata
+
+1.Purvo shte ni trqbva shemata koqto sme si napravili ot mongoose
+const Article = require('mongoose').model('Article');
+TOVA NI DAVA VSICHKI METODI I FUNKCII KOITO SA MI NUJNI ZA ZAPAZVANE NA ARTIKULI V BAZATA.
+
+2.Trqbva da si napravim rout v routes.js koito da slusha na daden link za dadenite Actioni v nashiq kontroller.
+V NACHALOTO NA ROUTE.JS PURVO TRQBVA DA SI REQUIERNEM TOZI KONTROLLER 	
+TRQBVA ZA NQKOI FORMI KOITO IMAT method="post" DA SE NAPRAVI I GET I POST ROUTOVE ZA HVASHTANE NA ZAQVKI.
+
+3.Za da imam dostup do funkciite v Kontrollera trqbva da gi exportna ZATOVA GI SUZDAVAM VUV module.exports !!!
+module.exports = {
+
+	// TUK SI PISHEM FUNKCIITE
+};
+
+4.Pravim si i get i post funkcii za nqkoi formi koito imat method="post" za obrabotvane na zaqvki.
+
+5. MINAVAME PROVERKITE V CREATE POST METODA ZA ARTICLE:
+     // we take the article properties
+        let articleArgs = req.body;
+
+        // Sega zapochvame da pravim proverki:
+
+        let errorMsg = '';
+
+        //req.isAuthenticated() comes from the passport module and
+        // it checks if there is currently a logged in user.
+        if(!req.isAuthenticated())
+        {
+            errorMsg = 'You should be logged in to make articles!'
+        }else if(!articleArgs.title)
+        {
+            // ako articleArgs.title e false t.e. ili e empty, undefined ili null
+            errorMsg = 'Invalid title!'
+        }else if(!articleArgs.content)
+        {
+            // ako articleArgs.content e false t.e. ili e empty, undefined ili null
+            errorMsg = 'Invalid content!';
+        }
+
+        if(errorMsg) {
+            // Ako ima greshka q podavame na viewto i to shte q pokaje
+            res.render('article/create', {error:errorMsg});
+            return;
+        }
+
+
+
+6.Setvame si avtora da e usera
+articleArgs.author = req.user.id;
+
+
+7.NAKRAQ TRQBVA DA GO SUZDADEM VSICHKO TOVA V BAZATA: 
+//2.Save the article to the database & o	Attach an “id”
+        // to the article, which we will add to the author’s articles later
+        Article.create(articleArgs).then(article => {
+           req.user.article.push(article.id);
+           req.user.save(err => {
+
+                if(err)
+                {
+                    res.redirect('/', {error: err.message})
+                }else
+                {
+                    // Ako nqma prosto redirektvame kum glavnata stranica
+                    res.redirect('/')
+                }
+
+            });
+        })
+
+SEGA MONGOOSE SHTE SE SETI DA NI SUZDADE NUJNITE TABLICI !!!!!!!!!!!
+
+
+
+
+
+
+// KATO ZA MALKO DOMASHNO SI PRAVIM AUTENTIKACIQ I NA ARTICLE CREATE GET METODA:
+
+
+
+        //SHTE NAPRAVIM I TUK AUTENTICACIQ; TOVA E KATO ZA DOMASHNO:
+        //Pravim go v GET metoda za da ne mojem direktno ot linka article/create
+        //da dostupim stranicata ako ne sme lognati
+
+        let error = "";
+        if(!req.isAuthenticated())
+            error = "Please log in to your account!";
+
+        if(error)
+        {
+            // ako ima greshka da renderira user/register stranicata i da
+            //pokaje greshkata !!!
+            res.render('user/register', {error: error});
+            return;
+        }
+
+            res.render('article/create');
+
+
+
+
+// PRAVIM SI LIST NA PURVITE 6 ARTIKULI NA GLAVNATA STRANICA
+Shte go napravim vuv home kontrollera, index actiona
+
+ //We get only the first 6 articles
+      //put all of the author’s information in the article property
+      //Nakraq renderirame viewto kato mu podavame vzetite artikuli!
+
+      Article.find({}).limit(6).populate('author').then(articles => {
+         res.render('home/index', {articles: articles});
+      });
+
+
+
+// PRAVIM SI I DETAILS STRANICATA 
+PRAVIM SI VIEW I METOD V KONTROLLERA, Dobavqm si put s parametur na kraq v route.js:
+
+V KONTROLLERA:
+    details: (req, res) => {
+
+        let articleId = req.params.id;
+
+        //Namirame artikula po Id-to
+        Article.findById(articleId).populate('author').then(article => {
+            res.render('article/details', article);
+        });
+    },
+
+V ROUTE:JS:
+    app.get('/user/details/', userController.profile)
+
+
+
+
+// CHREZ params  MOJEM DA DOSTUPVAME VSICHKI NESHTA KOITO SA V URL-a
+
+
+
+
+VAJNO  :  AKO PODADEM DADEN PARAMETUR OT KONTROLERA NA VIEW-to KATO OBEKT T.E. PO SLEDNIQT NACHIN:  
+
+PRIMERNO : 
+res.render('article/details', {article: article});POSLE VUV VIEWTO TRQBVA DA 
+IZVIKAME HARAKTERISTIKITE NA TOZI ARTICLE PO SLEDNIQT NACHIN:
+article.title, article.content, article.author.fullName
+
+
+AKO OBACHE PODADEM article NA VIEWTO PROSTO PO SLEDNIQT NACHIN:
+
+res.render('article/details', article);  
+POSLE VUV VIEWTO ZA DA IZVIKAME HARAKTERISTIKITE PROSTO PISHEM  content, title, author.fullName  NE NI E NUJNO DA PISHEM   author.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+NE MOJE DA REDIREKTNEM KUM STRANICA KOQTO NE E SUZDADENA!
+PURVIQT PUT KATO SUZDAVAME STRANICA TRQBVA DA Q RENDERIRAME.
+
+
+
+CALLBAK FUNKCIQ E FUNKCIQ KOQTO SE IZPULNQVA SLED KATO DRUGA FUNKCIQ SE IZPULNI.
+PRIMERNO: 
+server.listem(port, () => {
+	console.log(`Server listens on port ${port}`);
+});
+// TOVA E CALLBACK FUNKCIQ, SLED KATO SLUSAME NA DADENIQT PORT DA SE IZPULNI FUNKCIQTA KOQTO KONSOLLOGVA 
+// TAKA SE OBRABOTVAT ASINHROMNITE ZAQVKI
+
+
+VAJNO !!!!: 
+KATO KACHVAME JS PROEKT KACHVAME GO BEZ PAPKITE .idea I node_modules ZASHTOTO 
+TE AVTOMATICHNO SE INSTALIRAT KATO OTVORIM PROEKTA ZASHTOTO IMAME dependencies VUV FAILA package.json .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
