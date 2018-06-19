@@ -1,0 +1,224 @@
+
+
+App_Data – usually contains the project database
+
+App_Start – contains various configuration files, such as RouteConfig.cs (routes configuration), BundleConfig.cs (ASP.NET supports bundles, which essentially combine several JS/CSS files into one for better performance) and others
+
+Content – everything that is in our static folder (files, images, stylesheets, JavaScript scripts, etc.) will be accessible by every user, contains bootstrap etc.
+
+We know the rest.
+
+VAJNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!
+REBUILDVAITE PREDI DA RUNVATE PRILOJENIETO !!!
+REBUILDVANETO SE PRAVI SUS CTRL + SHIFT + B !!!!!!!!!!!!!!!!!!!!!!!!!
+
+VAJNO !!!!!!!!!!!!
+	    return View();
+            // returns Index.cshtml insade the views/home folder.
+            // Visual Studio is smart.
+            
+	     /* 
+               url-ite RABOTQT TAKA: "{controller}/{action}/{id}"
+               OPISANO E V RouteConfig.cs
+	       Viewto se namira v Views/Article Papkata    
+             */
+
+
+VAJNO !!!!!!!!!!! :
+KOGATO POLUCHAVAME DANNI CHREZ FORMA, TRQBVA DA POLZVAME [HttpPost] ANOTACIQ.
+
+
+
+VAJNO !!!!!!!!!!! :
+MNOGO E VAJNO NA IZPITA DA SI PROVERQVAME CHREZ DEBUGVANE V KAKUV TIP POLUCHAVAME DANNITE.
+
+
+By default Entity Framework doesn’t load properties from other entities. This is called Lazy Loading.
+
+
+
+
+
+BOOK LIBRARY PROEKT:
+
+0.TRIEM SI NENUJNITE LINKOVA KATO About Home I Contact, NAMIRAT SE V _Layout FAILA
+I OPRAVQME PAROLATA DA NE E TOLKOVA SLOJNA
+
+
+1.PRAVIM SI MODELA Book SUS VSICHITE NUJNI PROPERTITA
+
+
+VAJNO !!!
+CHREZ FAILUT ApplicationDBContext MOJEM DA DOSTUPVAME BAZATA DANNI 
+2.PRAVIM SI TOZI FAIL !!!
+
+
+VAJNO !!!
+3.ZA DA KAJEM NA BAZATA CHE SHTE IMAME SPISUK OT KNIGI( v nashiq sluchai ) VUTRE PISHEM:  public virtual DBSet<Book> Books { get; set; } 
+DbSet<> E SPECIQLEN KLAS V (EF) KOITO NI POZVOLQVA DA POLZVAME BAZATA KATO NQKAKUVA KOLEKCIQ V C# NA KOITO MOJEM DA PRILQGAME LINQ.
+
+
+4.TO AVTOMATICHNO DOBAVQ NESHTATA V BAZATA
+MOJEM DA VIDIM SAMATA BAZA CHREZ SQL SERVER MANAGMENT !!!
+
+
+5.USERITE NQMAT IMA, IMATA SAMO IMEIL, ID   I PAROLA
+DOBAVQME I USERNAME :
+V IdentityModels.cs FAILUT DOBAVQME public string FullName { set; get; }
+
+
+6.I POLSE V AccountViewModels.cs SI GO DOBAVQME SUSHTO ZA DA MOJEM DA GO DOSTUPVAME I POLZVAME OT VIEWTO CHREZ RAZOR:
+[Require]
+[Display(Name = "Full Name")]
+public string FullName { get; set; }
+
+
+7.SLED KATO GO DOBAVIM I V AccountView.cs TRQBVA DA GO DOBAVIM POSLEDNO V SAMATA REGISTRACIQ V SAMIQ ACCOUNTCONTROLER:
+Otivame vuv samiq Register action v AccountControllera i si dobavqme
+FullName = model.FullName SLED Email:
+
+var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName = model.FullName };
+
+
+8. DOBAVQME SI GO I VUV VIEWTO :
+Ptivame v Views/Account/RegisteView I si dobavqme :
+
+<div class="form-group">
+        @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+
+
+9. PRAVIM SI NOV USER
+Ako poluchim suobshtenieto Hello User   Log off
+
+
+10.TRQBVA DA SI DOBAVIM CONTROLER I VIEW ZA BOOKS:
+ZA SUZDAVANE NA KONTROLLER DAVAME : Dqsno kopche, Add Na papka controllers, posle New Scaffolded Item, Otvarq se prozorche I DAVAME MVC5 Content with Views using (EF) i si dobavqme modela i posle bazata.
+SLED TOVA IMAME GOTOV KONTROLLER S AVTOMATICHNO ACTIONI ZA CRUD OPERACII.
+
+MNOGO VAJNO !!!!!!!!!!!!!!!   :
+V POVECHETO PUTI TRQBVA DA SI PISHEM SAMI ACTIONITE I KONTROLLERITE ZASHTOTO AVTOMATICHNO NAPRAVENITE NQMA DA RABOTQT VSEKI PUT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+11.Dobavqme si link Books kum vsichkite knigi vuv failat _LoginPartial.cshtml
+<ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Books","Index","Books")</li>
+</ul>
+VODI DO INDEX ACTIONA V BOOKS KONTROLLERA.
+
+
+12.Trqbva da napravim taka che tekushtiq lognat user da bude avtor na novata suzdadena kniga !!!
+ZA DA STANE TRQBVA V Create Actiona V BooksControllera da SETNEME AuthorId DA E RAVEN NA Id-to NA TEKUSHTIQ USER.
+
+[HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Title,Description,AuthorId")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                // AKO PODADENOTO OT USERA E VALIDNO
+                
+                // SETVAME AuthorId DA E = NA Id-to na tekushtiq user
+                book.AuthorId = User.Identity.GetUserId();
+
+                // DOBAVQME KNIGATA V BAZATA
+                db.Books.Add(book);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(book);
+        }
+
+
+
+13. Trqbva da pokajem SAMIQ AVTOR V BookControlera V Details Actiona.
+IDEQTA E DA IZTEBLIM INFORmAIQTA ZA AVTORA PREDI DA PODADEM KNIGATA NA VIEWTO!!!
+
+//Vzimame Informavciqta za avtora  I SE ZAPULVA V book
+Book book = db.Books.Include(b => b.Author).Single(b => b.Id == id);
+
+//SEGA book SUDURJA I INFORMACIQTA ZA AVTORA KATO FULLNAME, ID I EMAIL KOETO ISKAME DA POKAJEM NA VIEWTO T.E. OT EDNATA TABLICA IZVLICHAME CQLATA INFORMACIQ OT DRUGATA.
+// SUS Single(b => b.Id == id)   VZIMAME SAMO TAZI KNIGA CHIQTO ID E RAVNO NA TOVA ID KOETO NE E PODADENO V DETALS ACTIONA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+14. NAKRAQ SI DOBAVQME VUV DETAILS VIEWTO:
+
+  	<dt>
+            @Html.DisplayNameFor(model => model.Author.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.FullName)
+        </dd>
+
+osven ko veche ne e slojeno avtomatichno ot ASP.NET FRAMEWORK !!!!
+
+
+
+
+
+
+SUZDAVANE NA PROEKT :  VAJNO!!!  
+KATO SUZDAVAME NOV ASP.NET PROEKT E PO DOBRE DA POLZVAME NAI NOVATA VERSIQ NA TOZI FRAMEWORK !!!!!!!!!!!!!!!!!!!!!!!!!!!
+AKO E NA No Authentication ZNACHI NQMA DA IMAME USERI,
+ZA DA IMAME TRQBVA DA POLZVAME Individual User Authentication
+UNCHEKVAME Host int the clout SUS MICROSOFT AZURE ZASHTOTO NE ISKAME DA KACHVAME NISHTO KUM CLOUD.
+
+
+
+
+kogato tuesim papka ili fail v Visual Studio v C# (EF) proekt se tursi po sledniq nachin:
+~/Model t.n.
+
+ V JAVATA BESHE
+./../Model/  t.n.
+
+
+VAJNO !!!!
+MNOGO CHESTO SHTE TRQBVA DA REBUILDVAME PROEKTA ZA DA NQMA GRESHKI !!!
+CTRL + SHIFT + B
+
+
+MNOGO VAJNOOOOO : !!!!!!!!!!!!!!!!!!!
+MOJEM DA SUZDAVAME VTOMATICHNI VIEWTA KOIT OOTGOVARQT NA CRUD OPERACII
+IMAME OPCII KATO :  Create, Delete, Edit, List, Details i dr.
+
+
+
+VAJNO !!! .
+RAZLIVKA MEJDU .Single() I .First()
+.Single() AKO NAMERI POVECHE OT EDIN VRUSHTA EXCEPTION
+.First() AKO NAMERI POVECHE OT EDIN VRUSHTA PURVIQ
+
+
+Vajno : !!!!
+MOJEMD APODAVAME PARAMETRI NA ACTIONA KUM KOITO REDIREKTVAME PRIMER:
+return RedirectToAction("Details", new {id = id})
+REDIRECTVAME KUM Details actiona i mu podavame id kato parametur KOETO SHTE SE POKAJE NA LINKA OT GORE.
+
+Vajno !!!!! :
+Mojem da davame razlichno ime na Actionite:
+
+// Tuk kazvame che actiona se kazva Delete dori i dolo da pishe deleteConfirmed
+	[HttpPost, ActionName("Delete")] 
+        public ActionResult DeleteConfirmed(int id)
+        {
+        	...
+	}
+
+
+Vajno : !!!!
+AKO NE INCLUDNEM AVTORA TOI E NULL. I AKO SE OPITAME DA MU POLZVAME STOINOSTITE,
+NE NA AVTORA SHTE NI HVURLI EXCEPION.
+
+
+
+
+
+
