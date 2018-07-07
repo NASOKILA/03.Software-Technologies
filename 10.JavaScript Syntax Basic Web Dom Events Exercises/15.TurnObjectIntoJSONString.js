@@ -1,7 +1,4 @@
 
-
-
-
 function solve(args)
 {
     let kvp = {};
@@ -20,26 +17,19 @@ function solve(args)
     {
         let input = el.split(" -> ");
 
-
-
-
-
         let key = input[0];
+
         let value = TryParseInt(`${input[1]}`, 0);
 
         if(value === 0)
             value = input[1];
 
         kvp[key] = value;
-
-
-
-
     }
+
     let json = JSON.stringify(kvp);
+
     console.log(json);
-
-
 }
 
 solve([
@@ -50,20 +40,3 @@ solve([
     'date -> 23/05/1995',
     'town -> Sofia'
     ]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

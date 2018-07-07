@@ -1,8 +1,4 @@
 
-
-
-
-
 function solve(atgs)
 {
     for(el of atgs)
@@ -15,8 +11,5 @@ function solve(atgs)
         console.log(el);
     }
 }
-
-
-
 
 solve([ 'Line 1', 'Line 2', 'Line 3', 'Stop' ]);

@@ -1,5 +1,4 @@
 
-
 function solve(args)
 {
     let arr = [];
@@ -16,24 +15,13 @@ function solve(args)
                 if(num >= 0 && num < arr.length) {
                     arr.splice(num, 1);
                 }
-
             }
-
     }
 
     for(let elem of arr)
     {
         console.log(elem);
     }
-
 }
 
-
 solve(['add 3', 'add 5', 'remove 2', 'remove 0', 'add 7', 'remove -1']);
-
-
-
-
-
-
-

@@ -7,7 +7,6 @@ function solve(args)
 }
 
 solve([ '2' ]);
-// we recive an array with one string
 
 
 
