@@ -1,5 +1,6 @@
 
 let arr = ["10", "20"];
+
 function sum(nums = arr)
 {
     let num1 = Number(nums[0]);

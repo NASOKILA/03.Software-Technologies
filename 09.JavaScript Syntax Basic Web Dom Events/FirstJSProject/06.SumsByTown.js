@@ -1,13 +1,11 @@
 
-
-
 let jsonData = [
     {"town":"Sofia","income":200},
     {"town":"Varna","income":120},
     {"town":"Pleven","income":60},
     {"town":"Varna","income":70}
-
 ];
+
 function solve(args) {
 
     let towns = [];
@@ -19,7 +17,7 @@ function solve(args) {
         let town = data.town;
         let income = data.income;
 
-        if (!towns.includes(town)) // ako ne sudurja grada
+        if (!towns.includes(town)) 
         {
             towns.push(town);
             arrResult.push({"town":town, "income": income});
@@ -37,12 +35,9 @@ function solve(args) {
             arrResult.splice(index,1);
 
             arrResult.push({"town":town, "income": oldIncome});
-
         }
-
     }
 
-    //A FUNCTION TO SORT ANYTHING;
     var sort_by = function(field, reverse, primer) {
 
         var key = primer ?
@@ -67,9 +62,8 @@ function solve(args) {
 
         console.log(town + " -> " + income);
     }
-
-
 }
+
 solve([
     '{"town":"Sofia","income":200}',
     '{"town":"Varna","income":120}',

@@ -1,13 +1,13 @@
 
-
 let arr = ["3 8 12"];
+
 function sum(nums = arr)
 {
     nums = nums[0].split(" ");
+
     let num1 = Number(nums[0]);
     let num2 = Number(nums[1]);
     let num3 = Number(nums[2]);
-
 
     if(num1 + num2 === num3)
     {
@@ -25,10 +25,7 @@ function sum(nums = arr)
     {
         console.log("No");
     }
-
-
 }
-
 
 sum();
 

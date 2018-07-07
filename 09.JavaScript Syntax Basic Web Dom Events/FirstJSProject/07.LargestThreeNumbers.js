@@ -13,6 +13,7 @@ function solve(args = nums)
         counter++;
     }
 }
+
 solve();
 
 

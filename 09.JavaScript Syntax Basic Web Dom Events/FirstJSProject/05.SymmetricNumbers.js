@@ -1,6 +1,6 @@
 
-
 arr = ["750"];
+
 function solve(num = arr)
 {
     let n = Number(num);
