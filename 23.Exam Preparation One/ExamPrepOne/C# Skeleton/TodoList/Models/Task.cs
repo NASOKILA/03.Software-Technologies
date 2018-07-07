@@ -3,12 +3,7 @@
 namespace TodoList.Models
 {
     public class Task
-    {
-        //TODO: Implement me...
-
-        // ako anotaciite ne sa vklucheni gi puskame sus ALT + ENTER !!!
-
-
+    {   
         [Key]
         public int Id { get; set; }
 
@@ -16,7 +11,6 @@ namespace TodoList.Models
         public string Title { get; set; }
 
         [Required]
-        public string Comments { get; set; }
-        
+        public string Comments { get; set; }   
     }
 }
