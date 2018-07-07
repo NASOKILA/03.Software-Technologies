@@ -1,7 +1,6 @@
+
 const mongoose = require('mongoose');
 const encryption = require('./../utilities/encryption');
-
-
 
 let userSchema = mongoose.Schema(
     {
@@ -25,6 +24,3 @@ userSchema.method ({
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
-
-
-

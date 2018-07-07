@@ -47,7 +47,6 @@ module.exports = {
         })
     },
 
-
     loginGet: (req, res) => {
         res.render('user/login');
     },
@@ -74,7 +73,6 @@ module.exports = {
         })
     },
 
-
     details: (req, res) => {
 
        let userId = req.params.id;
@@ -84,15 +82,8 @@ module.exports = {
         });
     },
 
-
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
     }
 };
-
-
-
-
-
-
