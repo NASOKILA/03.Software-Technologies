@@ -9,7 +9,7 @@ namespace IMDB.Models
         public int Id { get; set; }
 
         [Required]
-        [AllowHtml] // s tozi atribut kazvame che ako nqkoi idiot napishe html kod v poleto da go smqta za string
+        [AllowHtml] 
         public string Name { get; set; }
 
         [Required]
